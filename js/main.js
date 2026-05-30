@@ -187,7 +187,7 @@ const DATA = {
             "JWT",
             "NUnit"
           ],
-          "github": "https://github.com",
+          "github": "https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI",
           "demo": null,
           "icon": "🏨"
         },
@@ -203,7 +203,7 @@ const DATA = {
             "Serilog",
             "AutoMapper"
           ],
-          "github": "https://github.com",
+          "github": "https://github.com/Abdelrhman-elsaeed/ExaminationSystem",
           "demo": null,
           "icon": "📝"
         }
@@ -278,12 +278,12 @@ const DATA = {
       "socials": [
         {
           "label": "GitHub",
-          "href": "https://github.com",
+          "href": "https://github.com/Abdelrhman-elsaeed",
           "icon": "github"
         },
         {
           "label": "LinkedIn",
-          "href": "https://linkedin.com",
+          "href": "https://www.linkedin.com/in/elsaeed/",
           "icon": "linkedin"
         }
       ]
@@ -478,7 +478,7 @@ const DATA = {
             "JWT",
             "NUnit"
           ],
-          "github": "https://github.com",
+          "github": "https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI",
           "demo": null,
           "icon": "🏨"
         },
@@ -494,7 +494,7 @@ const DATA = {
             "Serilog",
             "AutoMapper"
           ],
-          "github": "https://github.com",
+          "github": "https://github.com/Abdelrhman-elsaeed/ExaminationSystem",
           "demo": null,
           "icon": "📝"
         }
@@ -569,12 +569,12 @@ const DATA = {
       "socials": [
         {
           "label": "GitHub",
-          "href": "https://github.com",
+          "href": "https://github.com/Abdelrhman-elsaeed",
           "icon": "github"
         },
         {
           "label": "LinkedIn",
-          "href": "https://linkedin.com",
+          "href": "https://www.linkedin.com/in/elsaeed/",
           "icon": "linkedin"
         }
       ]
