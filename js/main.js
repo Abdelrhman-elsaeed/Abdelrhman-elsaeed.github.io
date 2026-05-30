@@ -8,7 +8,7 @@ const DATA = {
       "about": "About",
       "skills": "Skills",
       "projects": "Projects",
-      "experience": "Experience",
+      "experience": "Education",
       "contact": "Contact"
     },
     "hero": {
@@ -210,45 +210,9 @@ const DATA = {
       ]
     },
     "experience": {
-      "title": "Experience & Training",
-      "subtitle": "My journey",
+      "title": "Education & Volunteering",
+      "subtitle": "My Background",
       "items": [
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "Practical Prompt Engineering",
-          "company": "Frontend Masters",
-          "period": "Apr 2026",
-          "badge": "Certificate",
-          "points": [
-            "Advanced LLM API integration and structured outputs.",
-            "Learned prompt engineering techniques for optimal AI interaction."
-          ]
-        },
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "Backend Development Foundations (C# & SQL)",
-          "company": "Programming Advice",
-          "period": "Oct 2025",
-          "badge": "Certificate",
-          "points": [
-            "Deep dive into C# fundamentals, OOP, and relational databases.",
-            "Built strong foundations for backend systems development."
-          ]
-        },
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "Computer Science & Problem Solving (C++)",
-          "company": "Programming Advice",
-          "period": "Feb 2025",
-          "badge": "Certificate",
-          "points": [
-            "Enhanced analytical and algorithmic problem-solving skills.",
-            "Solidified understanding of data structures and logic."
-          ]
-        },
         {
           "type": "training",
           "icon": "📚",
@@ -335,7 +299,7 @@ const DATA = {
       "about": "عني",
       "skills": "المهارات",
       "projects": "المشاريع",
-      "experience": "الخبرات",
+      "experience": "التعليم",
       "contact": "تواصل"
     },
     "hero": {
@@ -537,45 +501,9 @@ const DATA = {
       ]
     },
     "experience": {
-      "title": "الخبرات والتدريب",
-      "subtitle": "مسيرتي",
+      "title": "التعليم والأنشطة التطوعية",
+      "subtitle": "خلفيتي",
       "items": [
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "هندسة الأوامر التطبيقية (Prompt Engineering)",
-          "company": "Frontend Masters",
-          "period": "أبريل 2026",
-          "badge": "شهادة",
-          "points": [
-            "دمج متقدم لـ LLM API ومخرجات منظمة.",
-            "تعلم تقنيات هندسة الأوامر لتفاعل مثالي مع الذكاء الاصطناعي."
-          ]
-        },
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "أساسيات تطوير الواجهات الخلفية (C# & SQL)",
-          "company": "Programming Advice",
-          "period": "أكتوبر 2025",
-          "badge": "شهادة",
-          "points": [
-            "تعمق في أساسيات C# و OOP وقواعد البيانات العلاقية.",
-            "بناء أسس قوية لتطوير الأنظمة الخلفية."
-          ]
-        },
-        {
-          "type": "udemy",
-          "icon": "🎓",
-          "role": "علوم الحاسب وحل المشكلات (C++)",
-          "company": "Programming Advice",
-          "period": "فبراير 2025",
-          "badge": "شهادة",
-          "points": [
-            "تحسين المهارات التحليلية والخوارزمية في حل المشكلات.",
-            "تعزيز فهم هياكل البيانات والمنطق البرمجي."
-          ]
-        },
         {
           "type": "training",
           "icon": "📚",
