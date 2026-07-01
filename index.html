@@ -4,23 +4,497 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdelrhman Elsaid - .NET Developer</title>
+    <meta name="description" content="Abdelrhman Elsaid — .NET Developer Portfolio">
+    <title>Abdelrhman Elsaid | .NET Developer</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/aos.css">
-
     <link rel="stylesheet" href="./assets/css/style.css">
+
     <style>
-        html { scroll-behavior: smooth; }
-        .about-me-box { max-width: 600px; margin: 0 auto; }
-        .section-separator { padding-top: 80px; }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Section styling */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-label {
+            color: #5B78F6;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .section-title {
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        /* Available badge */
+        .badge-available {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .badge-available .dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Hero text details */
+        .hero-greeting {
+            color: #bcbcbc;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .hero-name {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+        .hero-role {
+            font-size: 24px;
+            color: #5B78F6;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .hero-tagline {
+            font-size: 16px;
+            color: #9f9f9f;
+            max-width: 520px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Custom Hero CTAs */
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .hero-stat-num {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .hero-stat-label {
+            font-size: 12px;
+            color: #858585;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .btn-primary-custom {
+            background: #5B78F6;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid #5B78F6;
+        }
+        .btn-primary-custom:hover {
+            background: #4663e0;
+            color: #fff;
+            border-color: #4663e0;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
+        .btn-ghost-custom {
+            background: transparent;
+            color: #9f9f9f;
+            padding: 12px 20px;
+            border-radius: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-ghost-custom:hover {
+            color: #fff;
+        }
+
+        /* Hero Social Links */
+        .hero-socials {
+            display: flex;
+            gap: 12px;
+        }
+        .social-btn-custom {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #9f9f9f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .social-btn-custom:hover {
+            background: #5B78F6;
+            color: #fff;
+            border-color: #5B78F6;
+            transform: translateY(-3px);
+        }
+
+        /* Code Card */
+        .code-card {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-top: 24px;
+        }
+        .code-topbar {
+            background: #1e1e1e;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .code-topbar div {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .code-filename {
+            color: #858585;
+            margin-left: 10px;
+            font-size: 11px;
+        }
+        .code-body {
+            padding: 20px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            text-align: left;
+        }
+        .code-purple { color: #c792ea; }
+        .code-blue { color: #82aaff; }
+        .code-white { color: #ffffff; }
+        .code-orange { color: #f78c6c; }
+        .code-green { color: #c3e88d; }
+        .code-gray { color: #546e7a; }
+        .code-footer {
+            background: #111111;
+            padding: 10px 18px;
+            font-size: 11px;
+            color: #858585;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Photo block custom wrapper */
+        .photo-card-wrap {
+            padding: 16px;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            position: relative;
+        }
+        .photo-card-wrap img {
+            border-radius: 20px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* About Section Stats & Info */
+        .about-bio-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #9f9f9f;
+            margin-bottom: 24px;
+        }
+        .about-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .about-info-icon {
+            font-size: 20px;
+        }
+        .about-info-text {
+            color: #bcbcbc;
+            font-size: 14px;
+        }
+        .lang-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: #fff;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* Skills category cards */
+        .skill-card-custom {
+            padding: 24px;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            height: 100%;
+        }
+        .skill-card-custom .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .skill-card-custom .icon {
+            font-size: 24px;
+        }
+        .skill-card-custom .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0;
+        }
+        .tags-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            background: rgba(91, 120, 246, 0.08);
+            color: #5B78F6;
+            border: 1px solid rgba(91, 120, 246, 0.15);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Experience Timeline Card */
+        .exp-card {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 30px;
+            height: 100%;
+            position: relative;
+        }
+        .exp-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .exp-card-icon {
+            font-size: 24px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .exp-card-role {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .exp-card-company {
+            color: #5B78F6;
+            font-weight: 500;
+        }
+        .exp-card-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        .exp-card-badge.education {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+        .exp-card-badge.extracurricular {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        .exp-card-period {
+            color: #858585;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .exp-card-points {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #9f9f9f;
+            margin-bottom: 0;
+        }
+        .exp-card-points li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .exp-card-points li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact Details Page styles */
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-item-custom {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+        .contact-item-custom .icon-box-custom {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5B78F6;
+            font-size: 20px;
+        }
+        .contact-item-custom .label {
+            color: #858585;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+        .contact-item-custom .value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+        }
+        .contact-item-custom a.value:hover {
+            color: #5B78F6;
+        }
+
+        /* Social Cards */
+        .socials-grid-custom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            height: 100%;
+        }
+        .social-card-custom {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #9f9f9f;
+            transition: 0.3s;
+        }
+        .social-card-custom:hover {
+            border-color: #5B78F6;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        .social-card-custom i {
+            font-size: 28px;
+            color: #5B78F6;
+        }
+        .social-card-custom span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Nav brand styling */
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+        .logo-text span {
+            color: #5B78F6;
+        }
     </style>
 </head>
 <body>
@@ -31,21 +505,23 @@
         <header class="header-area">
             <div class="container">
                 <div class="gx-row d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="logo">
-                        <img src="./assets/images/logo.svg" alt="Logo">
+                    <a href="#home" class="logo-text">
+                        AE<span>.</span>
                     </a>
 
                     <nav class="navbar">
                         <ul class="menu">
                             <li class="active"><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#skills">Skills</a></li>
                             <li><a href="#projects">Projects</a></li>
-                            <li><a href="#tools">My Tools</a></li>
-                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
-                        <a href="./contact.html" class="theme-btn">Let's talk</a>
+                        <a href="#contact" class="theme-btn">Let's talk</a>
                     </nav>
 
-                    <a href="./contact.html" class="theme-btn">Let's talk</a>
+                    <a href="#contact" class="theme-btn">Let's talk</a>
 
                     <div class="show-menu">
                         <span></span>
@@ -56,36 +532,305 @@
             </div>
         </header>
 
-        <!-- About -->
-        <section class="about-area" id="home">
+        <!-- Home Section -->
+        <section id="home">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-8 mx-auto" data-aos="zoom-in">
-                        <div class="about-me-box shadow-box">
-                            <a class="overlay-link" href="#about"></a>
-                            <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
-                            <div class="img-box">
-                                <img src="./assets/photo.jpg" alt="Abdelrhman Elsaid" style="border-radius: 30px 0 30px 0; max-height: 250px; object-fit: cover;">
+                <div class="row align-items-center gy-5">
+                    
+                    <!-- Left Hero Details -->
+                    <div class="col-lg-7" data-aos="fade-right">
+                        <div class="badge-available">
+                            <span class="dot"></span>
+                            Open to opportunities
+                        </div>
+                        
+                        <p class="hero-greeting">Hi, I'm</p>
+                        <h1 class="hero-name">Abdelrhman Elsaid</h1>
+                        <h2 class="hero-role">.NET Backend Developer</h2>
+                        <p class="hero-tagline">Building robust RESTful APIs & layered backend architectures.</p>
+                        
+                        <!-- Stats Row -->
+                        <div class="hero-stats">
+                            <div>
+                                <div class="hero-stat-num">2+</div>
+                                <div class="hero-stat-label">Major Projects</div>
                             </div>
-                            <div class="infos">
-                                <h4>A .NET DEVELOPER</h4>
-                                <h1>Abdelrhman Elsaid.</h1>
-                                <p>I am a .NET Backend Developer based in Cairo, Egypt.</p>
-                                <a href="#" class="about-btn">
-                                    <img src="./assets/images/icon.svg" alt="Button">
-                                </a>
+                            <div>
+                                <div class="hero-stat-num">100+</div>
+                                <div class="hero-stat-label">Unit Tests Written</div>
+                            </div>
+                            <div>
+                                <div class="hero-stat-num">5+</div>
+                                <div class="hero-stat-label">Architecture Patterns</div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Row -->
+                        <div class="hero-ctas">
+                            <a href="#projects" class="btn-primary-custom">View Projects</a>
+                            <a href="#contact" class="btn-outline-custom">Contact Me</a>
+                            <a href="assets/cv.pdf" download class="btn-ghost-custom">
+                                <i class="iconoir-download"></i>
+                                Download CV
+                            </a>
+                        </div>
+
+                        <!-- Social Buttons -->
+                        <div class="hero-socials">
+                            <a href="https://github.com/Abdelrhman-elsaeed" target="_blank" class="social-btn-custom" aria-label="GitHub">
+                                <i class="iconoir-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/elsaeed/" target="_blank" class="social-btn-custom" aria-label="LinkedIn">
+                                <i class="iconoir-linkedin"></i>
+                            </a>
+                            <a href="mailto:abdelrhman.ahmed.elsaeed@gmail.com" class="social-btn-custom" aria-label="Email">
+                                <i class="iconoir-mail"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Profile & Code Card -->
+                    <div class="col-lg-5 text-center" data-aos="fade-left">
+                        <div class="photo-card-wrap">
+                            <img src="./assets/photo.jpg" alt="Abdelrhman Elsaid">
+                        </div>
+
+                        <!-- C# Developer Code Card -->
+                        <div class="code-card">
+                            <div class="code-topbar">
+                                <div class="dot-red"></div>
+                                <div class="dot-yellow"></div>
+                                <div class="dot-green"></div>
+                                <span class="code-filename">abdelrhman.cs</span>
+                            </div>
+                            <div class="code-body">
+                                <span class="code-purple">var</span> <span class="code-blue">dev</span> <span class="code-white">= new</span> <span class="code-orange">Developer</span> <span class="code-white">{</span><br>
+                                &nbsp;&nbsp;<span class="code-blue">Name</span>  <span class="code-white">= </span><span class="code-green">"Abdelrhman Elsaid"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;<span class="code-blue">Role</span>  <span class="code-white">= </span><span class="code-green">".NET Developer"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;<span class="code-blue">Grad</span>  <span class="code-white">= </span><span class="code-orange">2025</span><span class="code-white">,</span><span class="code-gray">  // Graduation Year 🎉</span><br>
+                                &nbsp;&nbsp;<span class="code-blue">Stack</span> <span class="code-white">= new[] {</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"ASP.NET Core Web API"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Entity Framework Core"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Onion Arch & CQRS"</span><br>
+                                &nbsp;&nbsp;<span class="code-white">}</span><br>
+                                <span class="code-white">};</span>
+                            </div>
+                            <div class="code-footer">
+                                <span style="background:#4ade80;width:8px;height:8px;border-radius:50%;display:inline-block"></span>
+                                Build succeeded ✓
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Projects -->
-        <section class="projects-area section-separator" id="projects">
+        <!-- About Section -->
+        <section id="about">
             <div class="container">
-                <h1 class="section-heading" data-aos="fade-up"><img src="./assets/images/star-2.png" alt="Star"> Projects <img src="./assets/images/star-2.png" alt="Star"></h1>
+                <span class="section-label">Who I am</span>
+                <h2 class="section-title">About Me</h2>
+                
+                <div class="row gy-5 align-items-center">
+                    
+                    <!-- Left: Bio & Details -->
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <p class="about-bio-text">
+                            .NET Backend Developer with hands-on experience building RESTful APIs using C#, ASP.NET Core, Entity Framework Core, and SQL Server. Experienced in designing layered backend systems using Onion Architecture, N-Tier Architecture, CQRS with MediatR, Repository Pattern, JWT authentication, role-based authorization, and unit testing. Built practical Web API projects including a Hotel Reservation System and an Examination System.
+                        </p>
+
+                        <div class="about-details mb-4">
+                            <div class="about-info-item">
+                                <span class="about-info-icon">📍</span>
+                                <span class="about-info-text">Cairo, Egypt</span>
+                            </div>
+                            <div class="about-info-item">
+                                <span class="about-info-icon">🎓</span>
+                                <span class="about-info-text">B.Sc. Electronics & Comm Engineering — Mansoura University (2020–2025)</span>
+                            </div>
+                            <div class="about-info-item">
+                                <span class="about-info-icon">💡</span>
+                                <span class="about-info-text">AI & Prompt Engineering Enthusiast</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="lang-chip">Arabic · Native</span>
+                            <span class="lang-chip">English · Intermediate</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Grid of Stats -->
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="shadow-box info-box h-full">
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                                    <h1 class="text-white font-weight-bold" style="font-size: 36px;">2+</h1>
+                                    <p class="mb-0 text-muted" style="font-size: 13px;">Major Projects</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="shadow-box info-box h-full">
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                                    <h1 class="text-white font-weight-bold" style="font-size: 36px;">100+</h1>
+                                    <p class="mb-0 text-muted" style="font-size: 13px;">Unit Tests Written</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="shadow-box info-box h-full">
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                                    <h1 class="text-white font-weight-bold" style="font-size: 36px;">5+</h1>
+                                    <p class="mb-0 text-muted" style="font-size: 13px;">Architecture Patterns</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="shadow-box info-box h-full">
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                                    <h1 class="text-white font-weight-bold" style="font-size: 36px;">10+</h1>
+                                    <p class="mb-0 text-muted" style="font-size: 13px;">Technologies & Tools</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <span class="section-label">Technologies I work with</span>
+                <h2 class="section-title">Skills</h2>
+
+                <div class="row g-4">
+                    
+                    <!-- Back-End -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🖥️</span>
+                                <h3 class="title">Back-End</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">C#</span>
+                                <span class="skill-tag">C++</span>
+                                <span class="skill-tag">ASP.NET Core Web API</span>
+                                <span class="skill-tag">ASP.NET MVC</span>
+                                <span class="skill-tag">RESTful APIs</span>
+                                <span class="skill-tag">LINQ</span>
+                                <span class="skill-tag">ADO.NET</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Database & ORM -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🗄️</span>
+                                <h3 class="title">Database & ORM</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">SQL Server</span>
+                                <span class="skill-tag">Entity Framework Core</span>
+                                <span class="skill-tag">Code-First Migrations</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Architecture -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🏗️</span>
+                                <h3 class="title">Architecture</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">OOP</span>
+                                <span class="skill-tag">SOLID Principles</span>
+                                <span class="skill-tag">Design Patterns</span>
+                                <span class="skill-tag">Onion Architecture</span>
+                                <span class="skill-tag">3-Tier Architecture</span>
+                                <span class="skill-tag">Repository Pattern</span>
+                                <span class="skill-tag">CQRS</span>
+                                <span class="skill-tag">MediatR</span>
+                                <span class="skill-tag">FluentValidation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🔒</span>
+                                <h3 class="title">Security</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">JWT Authentication</span>
+                                <span class="skill-tag">Refresh Tokens</span>
+                                <span class="skill-tag">Role-Based Authorization</span>
+                                <span class="skill-tag">Network Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testing & Logging -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🧪</span>
+                                <h3 class="title">Testing & Logging</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">Unit Testing</span>
+                                <span class="skill-tag">NUnit</span>
+                                <span class="skill-tag">Moq</span>
+                                <span class="skill-tag">FluentAssertions</span>
+                                <span class="skill-tag">Serilog</span>
+                                <span class="skill-tag">Seq</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & AI -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="skill-card-custom">
+                            <div class="header">
+                                <span class="icon">🔧</span>
+                                <h3 class="title">Tools & AI</h3>
+                            </div>
+                            <div class="tags-wrap">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">Visual Studio</span>
+                                <span class="skill-tag">Postman</span>
+                                <span class="skill-tag">Swagger</span>
+                                <span class="skill-tag">Trello</span>
+                                <span class="skill-tag">LLM API Integration</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">Structured Outputs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <span class="section-label">Things I've built</span>
+                <h2 class="section-title">Projects</h2>
+
                 <div class="row gx-4 gy-4">
+                    
+                    <!-- Hotel Reservation -->
                     <div class="col-md-6" data-aos="zoom-in">
                         <div class="project-item shadow-box">
                             <a class="overlay-link" href="https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI" target="_blank"></a>
@@ -95,8 +840,18 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="project-info">
-                                    <p>WEB API</p>
+                                    <p>🏨 Onion Architecture + CQRS + 82 Unit Tests</p>
                                     <h1>Hotel Reservation</h1>
+                                    <p class="text-muted mt-2" style="font-size: 13px;">RESTful API for hotel reservation management using Onion Architecture and CQRS with MediatR. Implemented JWT, centralized error handling, and transaction middleware.</p>
+                                    <div class="tags-wrap mt-2">
+                                        <span class="skill-tag">ASP.NET Core</span>
+                                        <span class="skill-tag">EF Core</span>
+                                        <span class="skill-tag">SQL Server</span>
+                                        <span class="skill-tag">CQRS</span>
+                                        <span class="skill-tag">MediatR</span>
+                                        <span class="skill-tag">JWT</span>
+                                        <span class="skill-tag">NUnit</span>
+                                    </div>
                                 </div>
                                 <a href="https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI" target="_blank" class="project-btn">
                                     <img src="./assets/images/icon.svg" alt="Button">
@@ -105,6 +860,7 @@
                         </div>
                     </div>
                     
+                    <!-- Examination System -->
                     <div class="col-md-6" data-aos="zoom-in">
                         <div class="project-item shadow-box">
                             <a class="overlay-link" href="https://github.com/Abdelrhman-elsaeed/ExaminationSystem" target="_blank"></a>
@@ -114,8 +870,17 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="project-info">
-                                    <p>WEB API</p>
+                                    <p>📝 N-Tier + Identity + 32 Unit Tests</p>
                                     <h1>Examination System</h1>
+                                    <p class="text-muted mt-2" style="font-size: 13px;">RESTful API for managing online exams, courses, students, and grading. Implemented JWT role-based authorization using ASP.NET Core Identity. Centralized logging via Serilog.</p>
+                                    <div class="tags-wrap mt-2">
+                                        <span class="skill-tag">ASP.NET Core</span>
+                                        <span class="skill-tag">EF Core</span>
+                                        <span class="skill-tag">SQL Server</span>
+                                        <span class="skill-tag">Identity</span>
+                                        <span class="skill-tag">Serilog</span>
+                                        <span class="skill-tag">AutoMapper</span>
+                                    </div>
                                 </div>
                                 <a href="https://github.com/Abdelrhman-elsaeed/ExaminationSystem" target="_blank" class="project-btn">
                                     <img src="./assets/images/icon.svg" alt="Button">
@@ -123,59 +888,145 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- My Tools -->
-        <section class="credential-area section-separator" id="tools">
+        <!-- Experience Section -->
+        <section id="experience">
             <div class="container">
-                <h1 class="section-heading" data-aos="fade-up"><img src="./assets/images/star-2.png" alt="Star"> My Tools <img src="./assets/images/star-2.png" alt="Star"></h1>
-                <div class="d-grid skill-items gap-24 flex-wrap">
-                    <div class="skill-item" data-aos="zoom-in">
-                        <span class="percent">95%</span>
-                        <h3 class="name">C#</h3>
-                        <p>.NET Core Web API</p>
-                    </div>
-                    <div class="skill-item" data-aos="zoom-in">
-                        <span class="percent">90%</span>
-                        <h3 class="name">SQL Server</h3>
-                        <p>Entity Framework Core</p>
-                    </div>
-                    <div class="skill-item" data-aos="zoom-in">
-                        <span class="percent">85%</span>
-                        <h3 class="name">Architecture</h3>
-                        <p>Onion, N-Tier, CQRS</p>
-                    </div>
-                    <div class="skill-item" data-aos="zoom-in">
-                        <span class="percent">80%</span>
-                        <h3 class="name">Testing</h3>
-                        <p>NUnit, Moq</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <span class="section-label">My journey</span>
+                <h2 class="section-title">Experience & Education</h2>
 
-        <!-- Blog -->
-        <section class="blog-area section-separator" id="blog">
-            <div class="container">
-                <h1 class="section-heading" data-aos="fade-up"><img src="./assets/images/star-2.png" alt="Star"> Blog <img src="./assets/images/star-2.png" alt="Star"></h1>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="blog-items">
-                            <div class="blog-item" data-aos="zoom-in">
-                                <div class="img-box">
-                                    <img src="./assets/images/blog1.jpeg" alt="Blog" style="max-height: 400px; object-fit: cover;">
+                <div class="row g-4">
+                    
+                    <!-- Education Item -->
+                    <div class="col-md-6" data-aos="zoom-in">
+                        <div class="exp-card">
+                            <div class="exp-card-header">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="exp-card-icon">📚</div>
+                                    <div>
+                                        <div class="exp-card-role">Bachelor of Engineering</div>
+                                        <div class="exp-card-company">Mansoura University</div>
+                                        <span class="exp-card-badge education">Education</span>
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <span class="meta">Coming Soon</span>
-                                    <h1><a href="#">Building Scalable Web APIs</a></h1>
-                                    <p>Stay tuned for my upcoming articles on .NET architecture and best practices.</p>
-                                    <a href="#" class="theme-btn">Read More</a>
+                                <span class="exp-card-period">2020 – 2025</span>
+                            </div>
+                            <ul class="exp-card-points">
+                                <li>Studied core engineering principles and computer science fundamentals.</li>
+                                <li>Graduated with practical experience in team collaboration and project execution.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 1 -->
+                    <div class="col-md-6" data-aos="zoom-in">
+                        <div class="exp-card">
+                            <div class="exp-card-header">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="exp-card-icon">💼</div>
+                                    <div>
+                                        <div class="exp-card-role">Multimedia Director</div>
+                                        <div class="exp-card-company">Luminous MU</div>
+                                        <span class="exp-card-badge extracurricular">Extracurricular</span>
+                                    </div>
+                                </div>
+                                <span class="exp-card-period">Jan 2023 – Jul 2024</span>
+                            </div>
+                            <ul class="exp-card-points">
+                                <li>Recruited and interviewed over 30 new members.</li>
+                                <li>Restructured the media and marketing team to improve operational efficiency.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 2 -->
+                    <div class="col-md-6 mx-auto" data-aos="zoom-in">
+                        <div class="exp-card">
+                            <div class="exp-card-header">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="exp-card-icon">💼</div>
+                                    <div>
+                                        <div class="exp-card-role">Sub-team Leader</div>
+                                        <div class="exp-card-company">IEEE Mansoura Student Branch</div>
+                                        <span class="exp-card-badge extracurricular">Extracurricular</span>
+                                    </div>
+                                </div>
+                                <span class="exp-card-period">Jan 2022 – Dec 2023</span>
+                            </div>
+                            <ul class="exp-card-points">
+                                <li>Managed the end-to-end creation of visual assets for 2 major events.</li>
+                                <li>Led the design sub-team ensuring timely delivery and brand consistency.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <span class="section-label">Let's work together</span>
+                <h2 class="section-title">Contact</h2>
+                
+                <div class="row g-5 justify-content-center">
+                    
+                    <!-- Left: Details List -->
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <p class="mb-4 text-muted" style="font-size: 16px; line-height: 1.6;">
+                            I'm currently open to new opportunities. Feel free to reach out via any of the channels below!
+                        </p>
+                        
+                        <div class="contact-info-list">
+                            <div class="contact-item-custom">
+                                <div class="icon-box-custom">
+                                    <i class="iconoir-mail"></i>
+                                </div>
+                                <div>
+                                    <div class="label">Email</div>
+                                    <a href="mailto:abdelrhman.ahmed.elsaeed@gmail.com" class="value">abdelrhman.ahmed.elsaeed@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item-custom">
+                                <div class="icon-box-custom">
+                                    <i class="iconoir-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="label">Phone</div>
+                                    <a href="tel:+201068751057" class="value">+201068751057</a>
+                                </div>
+                            </div>
+                            <div class="contact-item-custom">
+                                <div class="icon-box-custom">
+                                    <i class="iconoir-pin-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="label">Location</div>
+                                    <span class="value">Cairo, Egypt</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Right: Social Links Grid -->
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="socials-grid-custom">
+                            <a href="https://github.com/Abdelrhman-elsaeed" target="_blank" class="social-card-custom">
+                                <i class="iconoir-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/elsaeed/" target="_blank" class="social-card-custom">
+                                <i class="iconoir-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -184,28 +1035,42 @@
         <footer class="footer-area">
             <div class="container">
                 <div class="footer-content text-center">
-                    <a href="./index.html" class="logo">
-                        <img src="./assets/images/logo.svg" alt="Logo">
+                    <a href="#home" class="logo-text">
+                        AE<span>.</span>
                     </a>
                     <ul class="footer-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="works.html">Works</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                     <p class="copyright">
-                        &copy; All rights reserved by <span>Abdelrhman Elsaid</span>
+                        &copy; All rights reserved. Made with ❤️ by <span>Abdelrhman Elsaid</span>
                     </p>
                 </div>
             </div>
         </footer>
 
     </main>
-    
 
     <script src="./assets/js/jquery-3.6.4.js"></script>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/aos.js"></script>
     <script src="./assets/js/main.js"></script>
+
+    <script>
+        // Update active menu link on scroll
+        $(window).scroll(function() {
+            var scrollDistance = $(window).scrollTop();
+            $('section').each(function(i) {
+                if ($(this).position().top <= scrollDistance + 100) {
+                    $('.navbar ul li.active').removeClass('active');
+                    $('.navbar ul li').eq(i).addClass('active');
+                }
+            });
+        }).scroll();
+    </script>
 </body>
 </html>
