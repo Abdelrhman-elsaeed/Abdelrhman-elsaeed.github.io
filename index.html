@@ -195,6 +195,34 @@
             transform: translateY(-3px);
         }
 
+        /* Profile circular photo & ring styling */
+        .photo-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+        .photo-wrap img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 3px solid #5B78F6;
+            box-shadow: 0 0 0 6px rgba(91, 120, 246, 0.15), 0 20px 40px rgba(0,0,0,0.3);
+            display: inline-block;
+        }
+        .photo-wrap .photo-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px dashed rgba(91, 120, 246, 0.3);
+            animation: spin 20s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* Code Card */
         .code-card {
             background: #161616;
@@ -516,6 +544,7 @@
                             <li><a href="#skills">Skills</a></li>
                             <li><a href="#projects">Projects</a></li>
                             <li><a href="#experience">Experience</a></li>
+                            <li><a href="#certificates">Certificates</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                         <a href="#contact" class="theme-btn">Let's talk</a>
@@ -546,7 +575,7 @@
                         
                         <p class="hero-greeting">Hi, I'm</p>
                         <h1 class="hero-name">Abdelrhman Elsaid</h1>
-                        <h2 class="hero-role">.NET Backend Developer</h2>
+                        <h2 class="hero-role">Junior .NET Backend Developer</h2>
                         <p class="hero-tagline">Building robust RESTful APIs & layered backend architectures.</p>
                         
                         <!-- Stats Row -->
@@ -591,8 +620,9 @@
 
                     <!-- Right Profile & Code Card -->
                     <div class="col-lg-5 text-center" data-aos="fade-left">
-                        <div class="photo-card-wrap">
+                        <div class="photo-wrap mb-4">
                             <img src="./assets/photo.jpg" alt="Abdelrhman Elsaid">
+                            <div class="photo-ring"></div>
                         </div>
 
                         <!-- C# Developer Code Card -->
@@ -637,7 +667,7 @@
                     <!-- Left: Bio & Details -->
                     <div class="col-lg-6" data-aos="fade-right">
                         <p class="about-bio-text">
-                            .NET Backend Developer with hands-on experience building RESTful APIs using C#, ASP.NET Core, Entity Framework Core, and SQL Server. Experienced in designing layered backend systems using Onion Architecture, N-Tier Architecture, CQRS with MediatR, Repository Pattern, JWT authentication, role-based authorization, and unit testing. Built practical Web API projects including a Hotel Reservation System and an Examination System.
+                            .NET Backend Developer with hands-on experience building RESTful APIs using C#, ASP.NET Core, and SQL. A structured thinker leveraging Onion Architecture and CQRS to deliver production-ready APIs backed by rigorous unit testing.
                         </p>
 
                         <div class="about-details mb-4">
@@ -647,7 +677,7 @@
                             </div>
                             <div class="about-info-item">
                                 <span class="about-info-icon">🎓</span>
-                                <span class="about-info-text">B.Sc. Electronics & Comm Engineering — Mansoura University (2020–2025)</span>
+                                <span class="about-info-text">Bachelor of Engineering in Electronics and Communications Engineering — Mansoura University (2020–2025)</span>
                             </div>
                             <div class="about-info-item">
                                 <span class="about-info-icon">💡</span>
@@ -657,7 +687,7 @@
 
                         <div>
                             <span class="lang-chip">Arabic · Native</span>
-                            <span class="lang-chip">English · Intermediate</span>
+                            <span class="lang-chip">English · Good</span>
                         </div>
                     </div>
 
@@ -707,113 +737,79 @@
 
                 <div class="row g-4">
                     
-                    <!-- Back-End -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <!-- Languages -->
+                    <div class="col-md-6" data-aos="zoom-in">
                         <div class="skill-card-custom">
                             <div class="header">
-                                <span class="icon">🖥️</span>
-                                <h3 class="title">Back-End</h3>
+                                <span class="icon">💬</span>
+                                <h3 class="title">Languages</h3>
                             </div>
                             <div class="tags-wrap">
                                 <span class="skill-tag">C#</span>
                                 <span class="skill-tag">C++</span>
-                                <span class="skill-tag">ASP.NET Core Web API</span>
-                                <span class="skill-tag">ASP.NET MVC</span>
-                                <span class="skill-tag">RESTful APIs</span>
-                                <span class="skill-tag">LINQ</span>
-                                <span class="skill-tag">ADO.NET</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Database & ORM -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-                        <div class="skill-card-custom">
-                            <div class="header">
-                                <span class="icon">🗄️</span>
-                                <h3 class="title">Database & ORM</h3>
-                            </div>
-                            <div class="tags-wrap">
-                                <span class="skill-tag">SQL Server</span>
-                                <span class="skill-tag">Entity Framework Core</span>
-                                <span class="skill-tag">Code-First Migrations</span>
                                 <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">SQL Server</span>
+                                <span class="skill-tag">HTML</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Architecture -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <!-- Frameworks & Libraries -->
+                    <div class="col-md-6" data-aos="zoom-in">
                         <div class="skill-card-custom">
                             <div class="header">
-                                <span class="icon">🏗️</span>
-                                <h3 class="title">Architecture</h3>
+                                <span class="icon">🖥️</span>
+                                <h3 class="title">Frameworks & Libraries</h3>
                             </div>
                             <div class="tags-wrap">
-                                <span class="skill-tag">OOP</span>
-                                <span class="skill-tag">SOLID Principles</span>
-                                <span class="skill-tag">Design Patterns</span>
-                                <span class="skill-tag">Onion Architecture</span>
-                                <span class="skill-tag">3-Tier Architecture</span>
-                                <span class="skill-tag">Repository Pattern</span>
-                                <span class="skill-tag">CQRS</span>
+                                <span class="skill-tag">ASP.NET Core</span>
+                                <span class="skill-tag">EF Core</span>
+                                <span class="skill-tag">ADO.NET</span>
+                                <span class="skill-tag">LINQ</span>
                                 <span class="skill-tag">MediatR</span>
                                 <span class="skill-tag">FluentValidation</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Security -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <!-- Architecture & Patterns -->
+                    <div class="col-md-6" data-aos="zoom-in">
                         <div class="skill-card-custom">
                             <div class="header">
-                                <span class="icon">🔒</span>
-                                <h3 class="title">Security</h3>
+                                <span class="icon">🏗️</span>
+                                <h3 class="title">Architecture & Patterns</h3>
                             </div>
                             <div class="tags-wrap">
-                                <span class="skill-tag">JWT Authentication</span>
-                                <span class="skill-tag">Refresh Tokens</span>
-                                <span class="skill-tag">Role-Based Authorization</span>
-                                <span class="skill-tag">Network Security</span>
+                                <span class="skill-tag">OOP</span>
+                                <span class="skill-tag">SOLID</span>
+                                <span class="skill-tag">Design Patterns</span>
+                                <span class="skill-tag">Onion Architecture</span>
+                                <span class="skill-tag">3-Tier</span>
+                                <span class="skill-tag">Repository Pattern</span>
+                                <span class="skill-tag">CQRS</span>
+                                <span class="skill-tag">MVC</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Testing & Logging -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-                        <div class="skill-card-custom">
-                            <div class="header">
-                                <span class="icon">🧪</span>
-                                <h3 class="title">Testing & Logging</h3>
-                            </div>
-                            <div class="tags-wrap">
-                                <span class="skill-tag">Unit Testing</span>
-                                <span class="skill-tag">NUnit</span>
-                                <span class="skill-tag">Moq</span>
-                                <span class="skill-tag">FluentAssertions</span>
-                                <span class="skill-tag">Serilog</span>
-                                <span class="skill-tag">Seq</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tools & AI -->
-                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <!-- Tools & Security -->
+                    <div class="col-md-6" data-aos="zoom-in">
                         <div class="skill-card-custom">
                             <div class="header">
                                 <span class="icon">🔧</span>
-                                <h3 class="title">Tools & AI</h3>
+                                <h3 class="title">Tools & Security</h3>
                             </div>
                             <div class="tags-wrap">
-                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">JWT</span>
+                                <span class="skill-tag">Refresh Tokens</span>
+                                <span class="skill-tag">Role-Based Authorization</span>
+                                <span class="skill-tag">NUnit</span>
+                                <span class="skill-tag">Moq</span>
+                                <span class="skill-tag">Serilog</span>
+                                <span class="skill-tag">Seq</span>
                                 <span class="skill-tag">GitHub</span>
-                                <span class="skill-tag">Visual Studio</span>
                                 <span class="skill-tag">Postman</span>
-                                <span class="skill-tag">Swagger</span>
-                                <span class="skill-tag">Trello</span>
-                                <span class="skill-tag">LLM API Integration</span>
-                                <span class="skill-tag">Prompt Engineering</span>
-                                <span class="skill-tag">Structured Outputs</span>
+                                <span class="skill-tag">Docker</span>
                             </div>
                         </div>
                     </div>
@@ -832,59 +828,72 @@
                     
                     <!-- Hotel Reservation -->
                     <div class="col-md-6" data-aos="zoom-in">
-                        <div class="project-item shadow-box">
+                        <div class="project-item shadow-box h-full" style="padding: 30px;">
                             <a class="overlay-link" href="https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI" target="_blank"></a>
                             <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
-                            <div class="project-img">
-                                <img src="./assets/images/project1.jpeg" alt="Project">
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="project-info">
-                                    <p>🏨 Onion Architecture + CQRS + 82 Unit Tests</p>
-                                    <h1>Hotel Reservation</h1>
-                                    <p class="text-muted mt-2" style="font-size: 13px;">RESTful API for hotel reservation management using Onion Architecture and CQRS with MediatR. Implemented JWT, centralized error handling, and transaction middleware.</p>
-                                    <div class="tags-wrap mt-2">
-                                        <span class="skill-tag">ASP.NET Core</span>
-                                        <span class="skill-tag">EF Core</span>
-                                        <span class="skill-tag">SQL Server</span>
-                                        <span class="skill-tag">CQRS</span>
-                                        <span class="skill-tag">MediatR</span>
-                                        <span class="skill-tag">JWT</span>
-                                        <span class="skill-tag">NUnit</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI" target="_blank" class="project-btn">
+                            
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="exp-card-icon" style="font-size: 32px; background: rgba(91, 120, 246, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">🏨</div>
+                                <a href="https://github.com/Abdelrhman-elsaeed/HotelReservationSystemWebAPI" target="_blank" class="project-btn" style="position: relative; z-index: 10;">
                                     <img src="./assets/images/icon.svg" alt="Button">
                                 </a>
+                            </div>
+
+                            <div class="project-info">
+                                <p class="exp-card-company" style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">✦ Onion Architecture + CQRS + 82 Unit Tests</p>
+                                <h1 style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">Hotel Reservation System Web API</h1>
+                                <p class="text-muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 16px;">Booking, Rooms & Reservation Management</p>
+                                <ul style="list-style-type: disc; padding-left: 20px; color: #9f9f9f; font-size: 13px; line-height: 1.6; margin-bottom: 20px;">
+                                    <li>Replaced a growing "fat service" layer with CQRS/MediatR handlers, cutting cross-dependencies between reservation, room, and guest logic.</li>
+                                    <li>Prevented partial-failure bugs in 5+ step reservation workflows by building custom transaction middleware with automatic rollback.</li>
+                                    <li>Secured the API with JWT, refresh tokens, and custom role-based filters; proved reliability with 82 passing NUnit/Moq/FluentAssertions tests.</li>
+                                </ul>
+                                <div class="tags-wrap">
+                                    <span class="skill-tag">ASP.NET Core</span>
+                                    <span class="skill-tag">EF Core</span>
+                                    <span class="skill-tag">SQL Server</span>
+                                    <span class="skill-tag">CQRS</span>
+                                    <span class="skill-tag">MediatR</span>
+                                    <span class="skill-tag">JWT</span>
+                                    <span class="skill-tag">IMemoryCache</span>
+                                    <span class="skill-tag">NUnit</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Examination System -->
                     <div class="col-md-6" data-aos="zoom-in">
-                        <div class="project-item shadow-box">
+                        <div class="project-item shadow-box h-full" style="padding: 30px;">
                             <a class="overlay-link" href="https://github.com/Abdelrhman-elsaeed/ExaminationSystem" target="_blank"></a>
                             <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
-                            <div class="project-img">
-                                <img src="./assets/images/project2.jpeg" alt="Project">
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="project-info">
-                                    <p>📝 N-Tier + Identity + 32 Unit Tests</p>
-                                    <h1>Examination System</h1>
-                                    <p class="text-muted mt-2" style="font-size: 13px;">RESTful API for managing online exams, courses, students, and grading. Implemented JWT role-based authorization using ASP.NET Core Identity. Centralized logging via Serilog.</p>
-                                    <div class="tags-wrap mt-2">
-                                        <span class="skill-tag">ASP.NET Core</span>
-                                        <span class="skill-tag">EF Core</span>
-                                        <span class="skill-tag">SQL Server</span>
-                                        <span class="skill-tag">Identity</span>
-                                        <span class="skill-tag">Serilog</span>
-                                        <span class="skill-tag">AutoMapper</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/Abdelrhman-elsaeed/ExaminationSystem" target="_blank" class="project-btn">
+                            
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="exp-card-icon" style="font-size: 32px; background: rgba(91, 120, 246, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">📝</div>
+                                <a href="https://github.com/Abdelrhman-elsaeed/ExaminationSystem" target="_blank" class="project-btn" style="position: relative; z-index: 10;">
                                     <img src="./assets/images/icon.svg" alt="Button">
                                 </a>
+                            </div>
+
+                            <div class="project-info">
+                                <p class="exp-card-company" style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">✦ N-Tier + Identity + 32 Unit Tests</p>
+                                <h1 style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">Examination System Web API</h1>
+                                <p class="text-muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 16px;">Automated Online Exams & Grading</p>
+                                <ul style="list-style-type: disc; padding-left: 20px; color: #9f9f9f; font-size: 13px; line-height: 1.6; margin-bottom: 20px;">
+                                    <li>Stopped invalid exam and grading data at the source with a FluentValidation pipeline in front of controllers, instead of scattering checks across services.</li>
+                                    <li>Built a dynamic exam generator and auto-grading engine that removed manual grading errors for instructors handling large student groups.</li>
+                                    <li>Enforced role-based access (Admin, Instructor, Student) and traced issues fast with Serilog/Seq logging, verified by 32 passing NUnit/Moq/FluentAssertions tests.</li>
+                                </ul>
+                                <div class="tags-wrap">
+                                    <span class="skill-tag">ASP.NET Core</span>
+                                    <span class="skill-tag">EF Core</span>
+                                    <span class="skill-tag">SQL Server</span>
+                                    <span class="skill-tag">Identity</span>
+                                    <span class="skill-tag">JWT</span>
+                                    <span class="skill-tag">Serilog</span>
+                                    <span class="skill-tag">FluentValidation</span>
+                                    <span class="skill-tag">NUnit</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -937,30 +946,91 @@
                                 <span class="exp-card-period">Jan 2023 – Jul 2024</span>
                             </div>
                             <ul class="exp-card-points">
-                                <li>Recruited and interviewed over 30 new members.</li>
-                                <li>Restructured the media and marketing team to improve operational efficiency.</li>
+                                <li>Recruited 30+ members.</li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Experience Item 2 -->
-                    <div class="col-md-6 mx-auto" data-aos="zoom-in">
+                    <div class="col-md-6" data-aos="zoom-in">
                         <div class="exp-card">
                             <div class="exp-card-header">
                                 <div class="d-flex gap-3 align-items-start">
                                     <div class="exp-card-icon">💼</div>
                                     <div>
-                                        <div class="exp-card-role">Sub-team Leader</div>
-                                        <div class="exp-card-company">IEEE Mansoura Student Branch</div>
+                                        <div class="exp-card-role">Media Sub-team Leader</div>
+                                        <div class="exp-card-company">IEEE Mansoura</div>
                                         <span class="exp-card-badge extracurricular">Extracurricular</span>
                                     </div>
                                 </div>
                                 <span class="exp-card-period">Jan 2022 – Dec 2023</span>
                             </div>
                             <ul class="exp-card-points">
-                                <li>Managed the end-to-end creation of visual assets for 2 major events.</li>
-                                <li>Led the design sub-team ensuring timely delivery and brand consistency.</li>
+                                <li>Led visual assets for 2 major events.</li>
                             </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates">
+            <div class="container">
+                <span class="section-label">My achievements</span>
+                <h2 class="section-title">Certificates</h2>
+
+                <div class="row g-4">
+                    
+                    <!-- Practical Prompt Engineering -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
+                            <div>
+                                <div class="header">
+                                    <span class="icon">📜</span>
+                                    <h3 class="title">Practical Prompt Engineering</h3>
+                                </div>
+                                <p class="text-muted" style="font-size: 13px;">Frontend Masters</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="exp-card-period">Apr 2026</span>
+                                <a href="https://frontendmasters.com" target="_blank" class="skill-tag">Certificate</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solid Principles -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
+                            <div>
+                                <div class="header">
+                                    <span class="icon">📜</span>
+                                    <h3 class="title">Solid Principles</h3>
+                                </div>
+                                <p class="text-muted" style="font-size: 13px;">Programming Advice</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="exp-card-period">Mar 2026</span>
+                                <a href="https://programmingadvice.com" target="_blank" class="skill-tag">Certificate</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Development -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
+                            <div>
+                                <div class="header">
+                                    <span class="icon">📜</span>
+                                    <h3 class="title">Backend Development, Foundations, Problem Solving</h3>
+                                </div>
+                                <p class="text-muted" style="font-size: 13px;">Programming Advice (C++&C# & SQL)</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="exp-card-period">Oct 2025</span>
+                                <a href="https://programmingadvice.com" target="_blank" class="skill-tag">Certificate</a>
+                            </div>
                         </div>
                     </div>
 
@@ -1044,6 +1114,7 @@
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#experience">Experience</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <p class="copyright">
