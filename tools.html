@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Developer Tools — Abdelrhman Elsaid">
+    <title>My Tools | Abdelrhman Elsaid</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/aos.css">
+    <link id="theme-link" rel="stylesheet" href="./assets/css/style.css">
+    <script>
+        // Apply theme immediately before rendering to avoid FOUC
+        (function() {
+            const theme = localStorage.getItem("theme") || "dark";
+            if (theme === "light") {
+                document.getElementById("theme-link").setAttribute("href", "./assets/css/style-light.css");
+                document.documentElement.classList.add("light-theme-applied");
+            }
+            const lang = localStorage.getItem("lang") || "en";
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-card: #161616;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --border-section: rgba(255, 255, 255, 0.05);
+            --text-title: #ffffff;
+            --text-desc: #9f9f9f;
+            --text-secondary: #bcbcbc;
+            --bg-topbar: #1e1e1e;
+            --bg-footer: #111111;
+            --border-topbar: rgba(255, 255, 255, 0.05);
+            --lang-chip-bg: rgba(255, 255, 255, 0.04);
+            --social-btn-bg: #161616;
+            --social-btn-border: rgba(255, 255, 255, 0.08);
+            --social-btn-text: #9f9f9f;
+        }
+
+        html.light-theme-applied body,
+        body.light-mode {
+            --bg-card: #ffffff;
+            --border-card: rgba(0, 0, 0, 0.08);
+            --border-section: rgba(0, 0, 0, 0.05);
+            --text-title: #111111;
+            --text-desc: #666666;
+            --text-secondary: #444444;
+            --bg-topbar: #f1f3f7;
+            --bg-footer: #e4e8f0;
+            --border-topbar: rgba(0, 0, 0, 0.05);
+            --lang-chip-bg: rgba(0, 0, 0, 0.04);
+            --social-btn-bg: #ffffff;
+            --social-btn-border: rgba(0, 0, 0, 0.08);
+            --social-btn-text: #666666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-section);
+        }
+        
+        .section-label {
+            color: #5B78F6;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--text-title);
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary-custom {
+            background: #5B78F6;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid #5B78F6;
+            text-decoration: none;
+        }
+        .btn-primary-custom:hover {
+            background: #4663e0;
+            color: #fff;
+            border-color: #4663e0;
+        }
+
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-title);
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+        .logo-text span {
+            color: #5B78F6;
+        }
+
+        /* Small Header & Toggle Overrides */
+        .header-area {
+            padding: 12px 0;
+            margin-top: 0;
+            background: rgba(15, 15, 15, 0.9) !important;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid var(--border-section);
+            transition: background 0.3s;
+        }
+        body.light-mode .header-area {
+            background: rgba(247, 249, 252, 0.9) !important;
+        }
+        .header-area .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-area .navbar .menu {
+            gap: 20px;
+        }
+        .header-area .navbar .menu li a {
+            padding: 8px 0px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        body.light-mode .header-area .navbar .menu li a {
+            color: #555555;
+        }
+        body.light-mode .header-area .navbar .menu li.active a,
+        body.light-mode .header-area .navbar .menu li a:hover {
+            color: #5B78F6;
+        }
+
+        /* Lang & Theme Toggles */
+        .header-ctrls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 16;
+        }
+        .ctrl-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            color: var(--text-title);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .ctrl-btn:hover {
+            background: #5B78F6;
+            color: #fff;
+            border-color: #5B78F6;
+        }
+
+        /* Tools Page Specific Styles */
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+        .tool-card:hover {
+            border-color: #5B78F6;
+            transform: translateY(-5px);
+        }
+        .tool-features-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: var(--text-desc);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .tool-features-list li {
+            margin-bottom: 6px;
+        }
+        .tool-features-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 767px) {
+            .header-area .navbar {
+                padding-top: 80px !important;
+                background: #0F0F0F !important;
+            }
+            body.light-mode .header-area .navbar {
+                background: #F7F9FC !important;
+            }
+            .header-area .navbar .menu {
+                gap: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="main-homepage">
+
+        <!-- Header -->
+        <header class="header-area">
+            <div class="container">
+                <div class="gx-row d-flex align-items-center justify-content-between">
+                    <a href="index.html#home" class="logo-text" data-i18n="logo">
+                        AE<span>.</span>
+                    </a>
+
+                    <nav class="navbar">
+                        <ul class="menu">
+                            <li><a href="index.html#home" data-i18n="nav_home">Home</a></li>
+                            <li><a href="index.html#about" data-i18n="nav_about">About</a></li>
+                            <li><a href="index.html#skills" data-i18n="nav_skills">Skills</a></li>
+                            <li><a href="index.html#projects" data-i18n="nav_projects">Projects</a></li>
+                            <li><a href="index.html#experience" data-i18n="nav_experience">Experience</a></li>
+                            <li><a href="index.html#certificates" data-i18n="nav_certificates">Certificates</a></li>
+                            <li class="active"><a href="tools.html" data-i18n="nav_tools">My Tools</a></li>
+                            <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+                            <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="header-ctrls">
+                        <button class="ctrl-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">
+                            <i class="iconoir-sun-light"></i>
+                        </button>
+                        <button class="ctrl-btn" id="lang-btn" aria-label="Toggle language">عربي</button>
+                        <a href="index.html#contact" class="theme-btn" data-i18n="btn_talk">Let's talk</a>
+                    </div>
+
+                    <div class="show-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tools Content -->
+        <section>
+            <div class="container">
+                <span class="section-label" data-i18n="nav_tools">My Tools</span>
+                <h1 class="section-title" data-i18n="tools_page_title">My Tools</h1>
+                <p class="text-muted mb-5" style="max-width: 600px; line-height: 1.6;" data-i18n="tools_page_subtitle">Custom built utilities & developer helper applications</p>
+
+                <div class="row g-4">
+                    <!-- Tool 1 -->
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="tool-card shadow-box h-full" style="padding: 30px;">
+                            <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="exp-card-icon" style="font-size: 32px; background: rgba(91, 120, 246, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">⚡</div>
+                                <a href="#" class="project-btn">
+                                    <i class="iconoir-download"></i>
+                                </a>
+                            </div>
+                            <div class="tool-info">
+                                <h3 class="text-white font-weight-bold" style="font-size: 20px; margin-bottom: 12px;" data-i18n="tool1_name">REST API Endpoint Tester</h3>
+                                <p class="text-muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 20px;" data-i18n="tool1_desc">A lightweight desktop tool to simulate and perform rapid testing of REST APIs. Built with C# and WPF to provide a zero-config GUI for testing endpoints.</p>
+                                
+                                <h4 class="text-white" style="font-size: 14px; font-weight: 600; margin-bottom: 12px;" data-i18n="tools_features_title">Key Features:</h4>
+                                <ul class="tool-features-list mb-4" data-i18n-list="tool1"></ul>
+                                
+                                <a href="#" class="btn-primary-custom d-block text-center mt-auto" style="border-radius: 12px; font-size: 13px;" data-i18n="tools_btn_download">Download Tool</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2 -->
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="tool-card shadow-box h-full" style="padding: 30px;">
+                            <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="exp-card-icon" style="font-size: 32px; background: rgba(91, 120, 246, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">⚙️</div>
+                                <a href="#" class="project-btn">
+                                    <i class="iconoir-download"></i>
+                                </a>
+                            </div>
+                            <div class="tool-info">
+                                <h3 class="text-white font-weight-bold" style="font-size: 20px; margin-bottom: 12px;" data-i18n="tool2_name">.NET Code Generator CLI</h3>
+                                <p class="text-muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 20px;" data-i18n="tool2_desc">A command-line tool that auto-generates Onion Architecture scaffolding including CQRS handlers, MediatR requests, and DTO mappings directly from SQL schemas.</p>
+                                
+                                <h4 class="text-white" style="font-size: 14px; font-weight: 600; margin-bottom: 12px;" data-i18n="tools_features_title">Key Features:</h4>
+                                <ul class="tool-features-list mb-4" data-i18n-list="tool2"></ul>
+                                
+                                <a href="#" class="btn-primary-custom d-block text-center mt-auto" style="border-radius: 12px; font-size: 13px;" data-i18n="tools_btn_download">Download Tool</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 3 -->
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="tool-card shadow-box h-full" style="padding: 30px;">
+                            <img src="./assets/images/bg1.png" alt="BG" class="bg-img">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="exp-card-icon" style="font-size: 32px; background: rgba(91, 120, 246, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">📊</div>
+                                <a href="#" class="project-btn">
+                                    <i class="iconoir-download"></i>
+                                </a>
+                            </div>
+                            <div class="tool-info">
+                                <h3 class="text-white font-weight-bold" style="font-size: 20px; margin-bottom: 12px;" data-i18n="tool3_name">SQL Schema Query Builder</h3>
+                                <p class="text-muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 20px;" data-i18n="tool3_desc">A desktop application that helps engineers visually draft complex SQL Server queries, check schemas, and benchmark performance with visual execution plans.</p>
+                                
+                                <h4 class="text-white" style="font-size: 14px; font-weight: 600; margin-bottom: 12px;" data-i18n="tools_features_title">Key Features:</h4>
+                                <ul class="tool-features-list mb-4" data-i18n-list="tool3"></ul>
+                                
+                                <a href="#" class="btn-primary-custom d-block text-center mt-auto" style="border-radius: 12px; font-size: 13px;" data-i18n="tools_btn_download">Download Tool</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-area">
+            <div class="container">
+                <div class="footer-content text-center">
+                    <a href="index.html#home" class="logo-text" data-i18n="logo">
+                        AE<span>.</span>
+                    </a>
+                    <ul class="footer-menu">
+                        <li><a href="index.html#home" data-i18n="nav_home">Home</a></li>
+                        <li><a href="index.html#about" data-i18n="nav_about">About</a></li>
+                        <li><a href="index.html#skills" data-i18n="nav_skills">Skills</a></li>
+                        <li><a href="index.html#projects" data-i18n="nav_projects">Projects</a></li>
+                        <li><a href="index.html#experience" data-i18n="nav_experience">Experience</a></li>
+                        <li><a href="index.html#certificates" data-i18n="nav_certificates">Certificates</a></li>
+                        <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                    <p class="copyright" data-i18n="footer_rights">
+                        &copy; All rights reserved. Made with ❤️ by <span>Abdelrhman Elsaid</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="./assets/js/jquery-3.6.4.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/aos.js"></script>
+    <script src="./assets/js/translations.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
