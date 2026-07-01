@@ -18,8 +18,9 @@
     * Responsive
 
 */
+
 :root {
-    --primary_color: #5B78F6;
+    --primary_color: #DE7356;
     --dark: #323232;
 }
 *,*::before,*::after {

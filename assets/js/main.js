@@ -87,12 +87,14 @@ function applyTheme() {
         if (theme === "light") {
             themeLink.setAttribute("href", "./assets/css/style-light.css");
             document.body.classList.add("light-mode");
+            document.documentElement.classList.add("light-theme-applied");
             if (themeBtnIcon) {
                 themeBtnIcon.className = "iconoir-half-moon"; // show moon when light
             }
         } else {
             themeLink.setAttribute("href", "./assets/css/style.css");
             document.body.classList.remove("light-mode");
+            document.documentElement.classList.remove("light-theme-applied");
             if (themeBtnIcon) {
                 themeBtnIcon.className = "iconoir-sun-light"; // show sun when dark
             }
