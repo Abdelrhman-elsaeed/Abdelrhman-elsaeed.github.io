@@ -20,15 +20,24 @@
         return w + gap;
     }
 
+    function getTranslation(key, fallback) {
+        const lang = document.documentElement.lang || 'en';
+        if (window.translations && window.translations[lang] && window.translations[lang][key]) {
+            return window.translations[lang][key];
+        }
+        return fallback;
+    }
+
     function initCarousel(root) {
         if (root.dataset.carouselReady === 'true') return;
         root.dataset.carouselReady = 'true';
 
+        const parentSection = root.closest('section');
         const track      = root.querySelector('.carousel-track');
         const viewport   = root.querySelector('.carousel-viewport');
-        const dotsHost   = root.querySelector('.carousel-dots');
-        const prevBtn    = root.querySelector('.carousel-arrow-prev');
-        const nextBtn    = root.querySelector('.carousel-arrow-next');
+        const dotsHost   = parentSection ? parentSection.querySelector('.carousel-dots') : null;
+        const prevBtn    = parentSection ? parentSection.querySelector('.carousel-arrow-prev') : null;
+        const nextBtn    = parentSection ? parentSection.querySelector('.carousel-arrow-next') : null;
         const live       = root.querySelector('.carousel-live');
         const slides     = Array.from(root.querySelectorAll('.carousel-slide'));
 
@@ -62,7 +71,6 @@
                 btn.type = 'button';
                 btn.className = 'carousel-dot';
                 btn.setAttribute('role', 'tab');
-                btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
                 btn.addEventListener('click', () => goTo(i, true));
                 dotsHost.appendChild(btn);
             });
@@ -74,21 +82,51 @@
             const step = getStep(track);
             if (step <= 0) return;
 
-            const logicalOffset = index * step;
+            let logicalOffset = index * step;
+            
+            // Constrain offset to prevent scrolling past the last slide's right edge
+            const maxOffset = track.scrollWidth - viewport.clientWidth;
+            if (maxOffset > 0 && logicalOffset > maxOffset) {
+                logicalOffset = maxOffset;
+            }
+
             const signedOffset  = isRTL() ? logicalOffset : -logicalOffset;
             track.style.transform = `translate3d(${signedOffset}px, 0, 0)`;
 
+            // Localize main carousel container label
+            const isBlog = root.closest('#blog-preview');
+            const ariaLabelKey = isBlog ? 'carousel_blog_aria' : 'carousel_tools_aria';
+            const defaultAriaLabel = isBlog ? 'Latest blog posts' : 'My developer tools';
+            root.setAttribute('aria-label', getTranslation(ariaLabelKey, defaultAriaLabel));
+
             slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
-            dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
 
-            if (prevBtn) prevBtn.disabled = false;
-            if (nextBtn) nextBtn.disabled = false;
+            // Localize dot aria-labels and set active class
+            if (dots.length > 0) {
+                const dotTemplate = getTranslation('carousel_dot', 'Go to slide {num}');
+                dots.forEach((d, i) => {
+                    d.setAttribute('aria-label', dotTemplate.replace('{num}', i + 1));
+                    d.classList.toggle('is-active', i === index);
+                });
+            }
 
+            // Localize arrow aria-labels
+            if (prevBtn) {
+                prevBtn.setAttribute('aria-label', getTranslation('carousel_prev', 'Previous slide'));
+                prevBtn.disabled = false;
+            }
+            if (nextBtn) {
+                nextBtn.setAttribute('aria-label', getTranslation('carousel_next', 'Next slide'));
+                nextBtn.disabled = false;
+            }
+
+            // Localize live region
             if (live) {
                 const card = slides[index].querySelector('.carousel-card');
                 const titleEl = card ? card.querySelector('.card-title') : null;
                 const title = titleEl ? titleEl.textContent.trim() : `Slide ${index + 1}`;
-                live.textContent = `${title} (${index + 1} of ${total})`;
+                const ofText = getTranslation('carousel_of', 'of');
+                live.textContent = `${title} (${index + 1} ${ofText} ${total})`;
             }
         }
 
@@ -178,13 +216,21 @@
         window.addEventListener('pointerup', onUp);
         window.addEventListener('pointercancel', onUp);
 
-        // -------- Keep offsets correct on resize / language toggle --------
+        // -------- Keep offsets correct on size change / language toggle --------
         let resizeRaf = null;
         function onResize() {
             if (resizeRaf) cancelAnimationFrame(resizeRaf);
             resizeRaf = requestAnimationFrame(render);
         }
-        window.addEventListener('resize', onResize);
+
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                if (entry.contentRect.width > 0) {
+                    onResize();
+                }
+            }
+        });
+        resizeObserver.observe(track);
 
         const dirObserver = new MutationObserver(() => render());
         dirObserver.observe(document.documentElement, {

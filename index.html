@@ -18,7 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/aos.css">
-    <link rel="stylesheet" href="./assets/css/carousel.css">
+    <link rel="stylesheet" href="./assets/css/carousel.css?v=1.0.1">
     <link id="theme-link" rel="stylesheet" href="./assets/css/style.css">
     <script>
         // Apply theme and language immediately before rendering to avoid FOUC
@@ -151,18 +151,109 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(222, 115, 86, 0); }
         }
 
-        /* Hero text details */
+        /* Hero Centering & Container layout */
+        #home {
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 60px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--border-section);
+        }
+
+        .hero-content-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* Animated Background Pattern & Glow Blobs */
+        .hero-bg-glow {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            transition: background-color 0.5s ease, opacity 0.5s ease;
+        }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background-color: #DE7356;
+            left: 10%;
+            top: 10%;
+            animation: floatBlobOne 20s infinite ease-in-out alternate;
+        }
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #3C58E3;
+            right: 15%;
+            bottom: 10%;
+            animation: floatBlobTwo 25s infinite ease-in-out alternate;
+        }
+        @keyframes floatBlobOne {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.1); }
+            100% { transform: translate(-30px, 80px) scale(0.95); }
+        }
+        @keyframes floatBlobTwo {
+            0% { transform: translate(0, 0) scale(1.1); }
+            50% { transform: translate(-80px, -50px) scale(0.9); }
+            100% { transform: translate(50px, -90px) scale(1.05); }
+        }
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image: radial-gradient(var(--border-card) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.3;
+            mask-image: radial-gradient(circle 350px at center, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle 350px at center, black, transparent 80%);
+        }
+
+        /* Light Theme overrides for animated background */
+        html.light-theme-applied .glow-blob,
+        body.light-mode .glow-blob {
+            opacity: 0.07;
+        }
+        html.light-theme-applied .blob-1,
+        body.light-mode .blob-1 {
+            background-color: #DE7356;
+        }
+        html.light-theme-applied .blob-2,
+        body.light-mode .blob-2 {
+            background-color: #5AB5E2;
+        }
+
+        /* Hero Text details */
         .hero-greeting {
             color: var(--text-secondary);
             font-size: 20px;
             margin-bottom: 8px;
         }
         .hero-name {
-            font-size: 56px;
+            font-size: 58px;
             font-weight: 800;
             color: var(--text-title);
             line-height: 1.1;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
         .hero-role {
             font-size: 24px;
@@ -173,7 +264,7 @@
         .hero-tagline {
             font-size: 16px;
             color: var(--text-desc);
-            max-width: 520px;
+            max-width: 540px;
             line-height: 1.6;
             margin-bottom: 30px;
         }
@@ -181,8 +272,10 @@
         /* Custom Hero CTAs */
         .hero-stats {
             display: flex;
+            justify-content: center;
             gap: 40px;
             margin-bottom: 30px;
+            width: 100%;
         }
         .hero-stat-num {
             font-size: 32px;
@@ -199,9 +292,11 @@
         
         .hero-ctas {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 16px;
             margin-bottom: 30px;
+            width: 100%;
         }
         .btn-primary-custom {
             background: #DE7356;
@@ -249,7 +344,9 @@
         /* Hero Social Links */
         .hero-socials {
             display: flex;
+            justify-content: center;
             gap: 12px;
+            width: 100%;
         }
         .social-btn-custom {
             width: 44px;
@@ -271,10 +368,14 @@
         }
 
         /* Profile circular photo & ring styling */
+        .hero-photo-container {
+            position: relative;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
         .photo-wrap {
             position: relative;
             display: inline-block;
-            margin-bottom: 24px;
         }
         .photo-wrap img {
             width: 200px;
@@ -284,21 +385,35 @@
             object-position: center;
             border: 3px solid #DE7356;
             box-shadow: 0 0 0 6px rgba(222, 115, 86, 0.15), 0 20px 40px rgba(0,0,0,0.3);
-            display: inline-block;
+            display: block;
         }
         .photo-wrap .photo-ring {
             position: absolute;
             inset: -8px;
             border-radius: 50%;
-            border: 2px dashed rgba(222, 115, 86, 0.3);
-            animation: spin 20s linear infinite;
+            border: 2px dashed rgba(222, 115, 86, 0.4);
+            box-shadow: 0 0 15px rgba(222, 115, 86, 0.1);
+            animation: spin 25s linear infinite, ringPulse 4s ease-in-out infinite alternate;
         }
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+        @keyframes ringPulse {
+            0% {
+                transform: scale(0.99);
+                opacity: 0.6;
+                box-shadow: 0 0 10px rgba(222, 115, 86, 0.15);
+            }
+            100% {
+                transform: scale(1.03);
+                opacity: 1;
+                box-shadow: 0 0 25px rgba(222, 115, 86, 0.35);
+                border-color: rgba(222, 115, 86, 0.6);
+            }
+        }
 
-        /* Code Card */
+        /* Code Card styling & floating decorators */
         .code-card {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
@@ -351,6 +466,80 @@
             align-items: center;
             gap: 8px;
             border-top: 1px solid var(--code-footer-border);
+        }
+
+        .hero-code-card {
+            position: absolute;
+            width: 200px;
+            font-size: 9px;
+            border-radius: 12px;
+            left: 155px;
+            top: -15px; /* sit higher behind the photo */
+            transform: rotate(6deg) scale(0.85);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            z-index: -1; /* behind photo ring */
+            pointer-events: none;
+            margin-top: 0;
+            opacity: 0.85;
+            animation: floatBob 6s ease-in-out infinite alternate;
+        }
+        .hero-code-card .code-body {
+            padding: 12px;
+            line-height: 1.4;
+        }
+        .hero-code-card .code-topbar {
+            padding: 6px 10px;
+        }
+        .hero-code-card .code-footer {
+            padding: 4px 10px;
+        }
+        @keyframes floatBob {
+            0% { transform: rotate(6deg) scale(0.85) translateY(0px); }
+            100% { transform: rotate(8deg) scale(0.85) translateY(-8px); }
+        }
+
+        [dir="rtl"] .hero-code-card {
+            left: auto;
+            right: 155px;
+            transform: rotate(-6deg) scale(0.85);
+            animation: floatBobRTL 6s ease-in-out infinite alternate;
+        }
+        @keyframes floatBobRTL {
+            0% { transform: rotate(-6deg) scale(0.85) translateY(0px); }
+            100% { transform: rotate(-8deg) scale(0.85) translateY(-8px); }
+        }
+
+        @media (max-width: 991px) {
+            .hero-code-card {
+                display: none;
+            }
+        }
+
+        /* GPU-Accelerated Staggered Entrance Animations */
+        .hero-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: calc(var(--stagger) * 100ms);
+        }
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-name-reveal {
+            opacity: 0;
+            transform: scale(0.96) translateY(15px);
+            animation: heroNameReveal 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: calc(var(--stagger) * 100ms);
+        }
+        @keyframes heroNameReveal {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         /* Photo block custom wrapper */
@@ -553,7 +742,7 @@
             color: #DE7356;
         }
 
-        /* Social Cards */
+        /* Social Cards Grid & Contact Refinements */
         .socials-grid-custom {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -561,7 +750,7 @@
             height: 100%;
         }
         .social-card-custom {
-            background: var(--bg-card);
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.75), rgba(18, 18, 18, 0.95));
             border: 1px solid var(--border-card);
             border-radius: 20px;
             padding: 24px;
@@ -569,22 +758,391 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
             gap: 12px;
             color: var(--social-btn-text);
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
         }
-        .social-card-custom:hover {
-            border-color: #DE7356;
-            color: #fff;
-            transform: translateY(-3px);
+        
+        .social-card-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(222, 115, 86, 0.08);
+            border: 1px solid rgba(222, 115, 86, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #DE7356;
+            font-size: 24px;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
-        .social-card-custom i {
-            font-size: 28px;
+        .social-card-custom:hover .social-card-icon-wrap {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(222, 115, 86, 0.15);
+        }
+        .social-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-title);
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+        .social-card-custom:hover .social-card-title {
             color: #DE7356;
         }
-        .social-card-custom span {
-            font-size: 14px;
-            font-weight: 500;
+        .social-card-desc {
+            font-size: 12px;
+            color: var(--text-desc);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Certificate Visual Placeholders */
+        .cert-thumbnail-placeholder {
+            height: 120px;
+            background: linear-gradient(135deg, rgba(222, 115, 86, 0.1), rgba(15, 15, 15, 0.8));
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+            transition: border-color 0.3s ease;
+        }
+        body.light-mode .cert-thumbnail-placeholder {
+            background: linear-gradient(135deg, rgba(222, 115, 86, 0.08), rgba(240, 242, 245, 0.8));
+        }
+        .skill-card-custom:hover .cert-thumbnail-placeholder {
+            border-color: rgba(222, 115, 86, 0.4);
+        }
+        .cert-badge-icon {
+            font-size: 36px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .skill-card-custom:hover .cert-badge-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+        .cert-glow {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #DE7356;
+            border-radius: 50%;
+            filter: blur(25px);
+            opacity: 0.15;
+            z-index: 1;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .skill-card-custom:hover .cert-glow {
+            transform: scale(1.4);
+            opacity: 0.25;
+        }
+
+        /* Carousel Edge Fade/Gradient Mask */
+        .carousel-viewport {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            mask-image: linear-gradient(to right, black 82%, transparent 98%);
+            -webkit-mask-image: linear-gradient(to right, black 82%, transparent 98%);
+        }
+        [dir="rtl"] .carousel-viewport {
+            mask-image: linear-gradient(to left, black 82%, transparent 98%);
+            -webkit-mask-image: linear-gradient(to left, black 82%, transparent 98%);
+        }
+
+        /* Unified Card Design System */
+        .carousel-card,
+        #projects .project-item,
+        .exp-card,
+        .skill-card-custom,
+        .social-card-custom,
+        .info-box.shadow-box {
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.75), rgba(18, 18, 18, 0.95)) !important;
+            border: 1px solid var(--border-card) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+            transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Specific sizing & shapes to align Blog/Tools with Projects cards */
+        .carousel-card,
+        #projects .project-item {
+            padding: 20px !important;
+            border-radius: 20px !important;
+        }
+        /* Blog/Tools cards: padding 0 so the thumbnail spans full width */
+        .carousel-card[style*="padding: 0"] {
+            padding: 0 !important;
+            border-radius: 20px !important;
+            overflow: hidden !important;
+        }
+        .exp-card,
+        .skill-card-custom,
+        .social-card-custom,
+        .info-box.shadow-box {
+            padding: 24px !important;
+            border-radius: 20px !important;
+        }
+
+        body.light-mode .carousel-card,
+        body.light-mode #projects .project-item,
+        body.light-mode .exp-card,
+        body.light-mode .skill-card-custom,
+        body.light-mode .social-card-custom,
+        body.light-mode .info-box.shadow-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 247, 250, 0.95)) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .carousel-card:hover,
+        #projects .project-item:hover,
+        .exp-card:hover,
+        .skill-card-custom:hover,
+        .social-card-custom:hover,
+        .info-box.shadow-box:hover {
+            border-color: #DE7356 !important;
+            box-shadow: 0 15px 35px rgba(222, 115, 86, 0.12) !important;
+            transform: translateY(-4px) !important;
+        }
+
+        /* ---------- Blog/Tools card image header (replaces icon row) ---------- */
+        .carousel-card .blog-tool-img {
+            display: block !important;
+            position: relative !important;
+            width: 100% !important;
+            height: 140px !important;
+            object-fit: cover !important;
+            border-radius: 14px !important;
+            margin-bottom: 14px !important;
+            opacity: 0.45 !important;
+            border: 1px solid var(--border-card);
+        }
+        .carousel-card .blog-tool-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 4px 8px 8px 8px;
+            flex: 1;
+        }
+        .carousel-card .blog-tool-info h1 {
+            font-size: 17px !important;
+            font-weight: 700 !important;
+            color: var(--text-title);
+            margin: 0 !important;
+            line-height: 1.35;
+            transition: color 0.3s ease;
+        }
+        .carousel-card .blog-tool-info p.text-muted {
+            font-size: 13px !important;
+            line-height: 1.55 !important;
+            margin: 0 !important;
+            color: var(--text-desc);
+        }
+        .carousel-card .blog-tool-info .tags-wrap {
+            margin-top: auto;
+            padding-top: 4px;
+        }
+        .carousel-card .card-category-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            color: #DE7356;
+            background: rgba(222, 115, 86, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(222, 115, 86, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+            align-self: flex-start;
+        }
+        .carousel-slide.is-active .carousel-card:hover .blog-tool-info h1 {
+            color: #DE7356;
+        }
+
+        /* Circular Arrow Icon — clean & subtle hover effect */
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            transition: transform 0.2s ease, opacity 0.2s ease,
+                        border-color 0.2s ease, background 0.2s ease,
+                        box-shadow 0.2s ease !important;
+            position: relative;
+            z-index: 10;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            box-shadow: none;
+            opacity: 0.85 !important;
+        }
+        .project-btn img {
+            width: 16px;
+            height: 16px;
+            transition: filter 0.2s ease, transform 0.2s ease !important;
+        }
+        /* Hover & focus: smooth orange transition, contained glow, no scale-jump */
+        .project-item:hover .project-btn,
+        .carousel-card:hover .project-btn,
+        .project-btn:hover,
+        .project-btn:focus-visible {
+            opacity: 1 !important;
+            transform: none !important;
+            background: rgba(222, 115, 86, 0.08);
+            border-color: #DE7356;
+            box-shadow: 0 0 0 4px rgba(222, 115, 86, 0.12) !important;
+        }
+        .project-item:hover .project-btn img,
+        .carousel-card:hover .project-btn img,
+        .project-btn:hover img,
+        .project-btn:focus-visible img {
+            filter: invert(52%) sepia(85%) saturate(1512%) hue-rotate(338deg) brightness(101%) contrast(92%) !important;
+        }
+        /* Blog/Tools arrow: corner overlay style — always fully visible */
+        .carousel-card .blog-tool-arrow {
+            opacity: 1 !important;
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .carousel-slide.is-active .carousel-card:hover .blog-tool-arrow {
+            background: #DE7356;
+            border-color: #DE7356;
+            box-shadow: 0 0 0 4px rgba(222, 115, 86, 0.18) !important;
+        }
+        .carousel-slide.is-active .carousel-card:hover .blog-tool-arrow img {
+            filter: brightness(0) invert(1) !important;
+        }
+
+
+
+        /* Unify section padding (vertical spacing rhythm) */
+        section {
+            padding: 100px 0 !important;
+            border-bottom: 1px solid var(--border-section) !important;
+        }
+
+        /* Global Typography & Focus states alignment */
+        .section-label {
+            color: #DE7356 !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+            margin-bottom: 10px !important;
+        }
+        .section-title {
+            color: var(--text-title) !important;
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            margin-bottom: 48px !important;
+            letter-spacing: -0.5px !important;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #DE7356 !important;
+            outline-offset: 3px !important;
+        }
+
+        /* OS prefers-reduced-motion setting */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-delay: 0s !important;
+                animation-duration: 0s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0s !important;
+                scroll-behavior: auto !important;
+            }
+            .photo-wrap .photo-ring,
+            .hero-code-card,
+            .glow-blob {
+                animation: none !important;
+            }
+            .project-btn,
+            .project-btn img {
+                transition: none !important;
+            }
+            .project-item:hover .project-btn,
+            .carousel-card:hover .project-btn,
+            .project-btn:hover,
+            .project-btn:focus-visible {
+                box-shadow: none !important;
+            }
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 767px) {
+            section {
+                padding: 60px 0 !important;
+            }
+            .carousel-card,
+            #projects .project-item {
+                padding: 16px !important;
+                border-radius: 18px !important;
+            }
+            .carousel-card .blog-tool-img {
+                height: 110px !important;
+                margin-bottom: 12px !important;
+                border-radius: 12px !important;
+            }
+            .carousel-card .blog-tool-info h1 {
+                font-size: 16px !important;
+            }
+            .carousel-card .blog-tool-info p.text-muted {
+                font-size: 12px !important;
+            }
+            .carousel-card .blog-tool-info {
+                padding: 2px 4px 6px 4px;
+                gap: 8px;
+            }
+            .carousel-card .blog-tool-arrow {
+                width: 32px !important;
+                height: 32px !important;
+                top: 10px !important;
+                right: 10px !important;
+            }
+            .carousel-card .blog-tool-arrow img {
+                width: 14px !important;
+                height: 14px !important;
+            }
+            .project-btn {
+                width: 34px !important;
+                height: 34px !important;
+            }
+            .project-btn img {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .section-title {
+                font-size: 28px !important;
+                margin-bottom: 32px !important;
+            }
+        }
+        @media (max-width: 575px) {
+            .socials-grid-custom {
+                grid-template-columns: 1fr;
+            }
+            .carousel-card .blog-tool-img {
+                height: 95px !important;
+            }
         }
 
         /* Nav brand styling */
@@ -772,69 +1330,37 @@
 
         <!-- Home Section -->
         <section id="home">
+            <!-- Animated Background Pattern & Glow Blobs -->
+            <div class="hero-bg-glow">
+                <div class="glow-blob blob-1"></div>
+                <div class="glow-blob blob-2"></div>
+            </div>
+            <div class="hero-bg-pattern"></div>
+
             <div class="container">
-                <div class="row align-items-center gy-5">
+                <div class="hero-content-wrap">
                     
-                    <!-- Left Hero Details -->
-                    <div class="col-lg-7" data-aos="fade-right">
-                        <div class="badge-available">
-                            <span class="dot"></span>
-                            <span data-i18n="hero_available">Open to opportunities</span>
-                        </div>
-                        
-                        <p class="hero-greeting" data-i18n="hero_greeting">Hi, I'm</p>
-                        <h1 class="hero-name" data-i18n="hero_name">Abdelrhman Elsaid</h1>
-                        <h2 class="hero-role" data-i18n="hero_role">Junior .NET Backend Developer</h2>
-                        <p class="hero-tagline" data-i18n="hero_tagline">Building robust RESTful APIs & layered backend architectures.</p>
-                        
-                        <!-- Stats Row -->
-                        <div class="hero-stats">
-                            <div>
-                                <div class="hero-stat-num" data-i18n="hero_stat_projects_num">2+</div>
-                                <div class="hero-stat-label" data-i18n="hero_stat_projects_lbl">Major Projects</div>
-                            </div>
-                            <div>
-                                <div class="hero-stat-num" data-i18n="hero_stat_tests_num">100+</div>
-                                <div class="hero-stat-label" data-i18n="hero_stat_tests_lbl">Unit Tests Written</div>
-                            </div>
-                            <div>
-                                <div class="hero-stat-num" data-i18n="hero_stat_patterns_num">5+</div>
-                                <div class="hero-stat-label" data-i18n="hero_stat_patterns_lbl">Architecture Patterns</div>
-                            </div>
-                        </div>
- 
-                        <!-- CTA Row -->
-                        <div class="hero-ctas">
-                            <a href="#projects" class="btn-primary-custom" data-i18n="btn_view_projects">View Projects</a>
-                            <a href="#contact" class="btn-outline-custom" data-i18n="btn_contact_me">Contact Me</a>
-                            <a href="assets/cv.pdf" download class="btn-ghost-custom" data-i18n="btn_download_cv">
-                                <i class="iconoir-download"></i>
-                                Download CV
-                            </a>
-                        </div>
-
-                        <div class="hero-socials">
-                            <a href="https://github.com/Abdelrhman-elsaeed" target="_blank" class="social-btn-custom" aria-label="GitHub">
-                                <i class="iconoir-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/elsaeed/" target="_blank" class="social-btn-custom" aria-label="LinkedIn">
-                                <i class="iconoir-linkedin"></i>
-                            </a>
-                            <a href="mailto:abdelrhman.ahmed.elsaeed@gmail.com" class="social-btn-custom" aria-label="Email">
-                                <i class="iconoir-mail"></i>
-                            </a>
-                        </div>
+                    <!-- 1. Available Badge -->
+                    <div class="badge-available hero-fade-in" style="--stagger: 0;">
+                        <span class="dot"></span>
+                        <span data-i18n="hero_available">Open to opportunities</span>
                     </div>
-
-                    <!-- Right Profile & Code Card -->
-                    <div class="col-lg-5 text-center" data-aos="fade-left">
-                        <div class="photo-wrap mb-4">
+                    
+                    <!-- 2. Greeting Text -->
+                    <p class="hero-greeting hero-fade-in" style="--stagger: 1;" data-i18n="hero_greeting">Hi, I'm</p>
+                    
+                    <!-- 3. Name -->
+                    <h1 class="hero-name hero-name-reveal" style="--stagger: 2;" data-i18n="hero_name">Abdelrhman Elsaid</h1>
+                    
+                    <!-- 4. Profile Photo & Floating Code Card -->
+                    <div class="hero-photo-container hero-fade-in" style="--stagger: 3;">
+                        <div class="photo-wrap">
                             <img src="./assets/photo.jpg" alt="Abdelrhman Elsaid">
                             <div class="photo-ring"></div>
                         </div>
 
-                        <!-- C# Developer Code Card -->
-                        <div class="code-card">
+                        <!-- C# Developer Code Card (Decorative element) -->
+                        <div class="code-card hero-code-card">
                             <div class="code-topbar">
                                 <div class="dot-red"></div>
                                 <div class="dot-yellow"></div>
@@ -845,11 +1371,11 @@
                                 <span class="code-purple">var</span> <span class="code-blue">dev</span> <span class="code-white">= new</span> <span class="code-orange">Developer</span> <span class="code-white">{</span><br>
                                 &nbsp;&nbsp;<span class="code-blue">Name</span>  <span class="code-white">= </span><span class="code-green">"Abdelrhman Elsaid"</span><span class="code-white">,</span><br>
                                 &nbsp;&nbsp;<span class="code-blue">Role</span>  <span class="code-white">= </span><span class="code-green">".NET Developer"</span><span class="code-white">,</span><br>
-                                &nbsp;&nbsp;<span class="code-blue">Grad</span>  <span class="code-white">= </span><span class="code-orange">2025</span><span class="code-white">,</span><span class="code-gray">  // Graduation Year 🎉</span><br>
+                                &nbsp;&nbsp;<span class="code-blue">Grad</span>  <span class="code-white">= </span><span class="code-orange">2025</span><span class="code-white">,</span><br>
                                 &nbsp;&nbsp;<span class="code-blue">Stack</span> <span class="code-white">= new[] {</span><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"ASP.NET Core Web API"</span><span class="code-white">,</span><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Entity Framework Core"</span><span class="code-white">,</span><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Onion Arch & CQRS"</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"ASP.NET Core API"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"EF Core"</span><span class="code-white">,</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-green">"Onion & CQRS"</span><br>
                                 &nbsp;&nbsp;<span class="code-white">}</span><br>
                                 <span class="code-white">};</span>
                             </div>
@@ -859,167 +1385,52 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Carousel Section -->
-        <section id="blog-preview" data-aos="fade-up">
-            <div class="container">
-                <div class="carousel-section-head">
-                    <div class="head-titles">
-                        <span class="section-label" data-i18n="blog_section_label">Fresh from the keyboard</span>
-                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="blog_section_title">Latest From My Blog</h2>
+                    
+                    <!-- 5. Role Title -->
+                    <h2 class="hero-role hero-fade-in" style="--stagger: 4;" data-i18n="hero_role">Junior .NET Backend Developer</h2>
+                    
+                    <!-- 6. Tagline -->
+                    <p class="hero-tagline hero-fade-in" style="--stagger: 5;" data-i18n="hero_tagline">Building robust RESTful APIs & layered backend architectures.</p>
+                    
+                    <!-- 7. Stats Row -->
+                    <div class="hero-stats hero-fade-in" style="--stagger: 6;">
+                        <div>
+                            <div class="hero-stat-num" data-i18n="hero_stat_projects_num">2+</div>
+                            <div class="hero-stat-label" data-i18n="hero_stat_projects_lbl">Major Projects</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-num" data-i18n="hero_stat_tests_num">100+</div>
+                            <div class="hero-stat-label" data-i18n="hero_stat_tests_lbl">Unit Tests Written</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-num" data-i18n="hero_stat_patterns_num">5+</div>
+                            <div class="hero-stat-label" data-i18n="hero_stat_patterns_lbl">Architecture Patterns</div>
+                        </div>
                     </div>
-                    <div class="carousel-controls">
-                        <div class="carousel-dots" role="tablist"></div>
-                        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
-                            <i class="iconoir-nav-arrow-left"></i>
-                        </button>
-                        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
-                            <i class="iconoir-nav-arrow-right"></i>
-                        </button>
+ 
+                    <!-- 8. CTA Buttons Row -->
+                    <div class="hero-ctas hero-fade-in" style="--stagger: 7;">
+                        <a href="#projects" class="btn-primary-custom" data-i18n="btn_view_projects">View Projects</a>
+                        <a href="#contact" class="btn-outline-custom" data-i18n="btn_contact_me">Contact Me</a>
+                        <a href="assets/cv.pdf" download class="btn-ghost-custom" data-i18n="btn_download_cv">
+                            <i class="iconoir-download"></i>
+                            Download CV
+                        </a>
                     </div>
-                </div>
 
-                <div class="carousel"
-                     data-carousel
-                     data-autoplay="5000"
-                     aria-roledescription="carousel"
-                     aria-label="Latest blog posts">
-                    <div class="carousel-viewport">
-                        <ul class="carousel-track" role="list">
-                            <li class="carousel-slide">
-                                <a href="blog.html" class="carousel-card" aria-label="Read: Why Onion Architecture is Vital for Scaling .NET APIs" style="text-decoration: none; color: inherit;">
-                                    <div class="card-icon" aria-hidden="true">🏛️</div>
-                                    <div class="card-meta">
-                                        <span class="meta-cat" data-i18n="blog1_cat">ARCHITECTURE</span>
-                                        <span class="meta-sep">·</span>
-                                        <span data-i18n="blog1_date">June 2026</span>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="blog1_title">Why Onion Architecture is Vital for Scaling .NET APIs</h3>
-                                    <p class="card-desc" data-i18n="blog1_desc">An in-depth look at Onion Architecture, how it decouples core business logic from outer layers, and why it is a lifesaver for long-term project maintenance.</p>
-                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
-                                </a>
-                            </li>
-                            <li class="carousel-slide">
-                                <a href="blog.html" class="carousel-card" aria-label="Read: Replacing Fat Services with MediatR & CQRS in ASP.NET Core" style="text-decoration: none; color: inherit;">
-                                    <div class="card-icon" aria-hidden="true">⚡</div>
-                                    <div class="card-meta">
-                                        <span class="meta-cat" data-i18n="blog2_cat">PERFORMANCE</span>
-                                        <span class="meta-sep">·</span>
-                                        <span data-i18n="blog2_date">May 2026</span>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="blog2_title">Replacing Fat Services with MediatR & CQRS in ASP.NET Core</h3>
-                                    <p class="card-desc" data-i18n="blog2_desc">Learn how to clean up controllers and split your business operations into isolated Queries and Commands for simpler testing and separation of concerns.</p>
-                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
-                                </a>
-                            </li>
-                            <li class="carousel-slide">
-                                <a href="blog.html" class="carousel-card" aria-label="Read: Implementing Robust JWT & Refresh Token Authentication" style="text-decoration: none; color: inherit;">
-                                    <div class="card-icon" aria-hidden="true">🔐</div>
-                                    <div class="card-meta">
-                                        <span class="meta-cat" data-i18n="blog3_cat">SECURITY</span>
-                                        <span class="meta-sep">·</span>
-                                        <span data-i18n="blog3_date">April 2026</span>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="blog3_title">Implementing Robust JWT & Refresh Token Authentication</h3>
-                                    <p class="card-desc" data-i18n="blog3_desc">A step-by-step tutorial on securing Web APIs using JSON Web Tokens, managing refresh tokens safely, and writing custom role-based filters.</p>
-                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <!-- 9. Social Links Row -->
+                    <div class="hero-socials hero-fade-in" style="--stagger: 8;">
+                        <a href="https://github.com/Abdelrhman-elsaeed" target="_blank" class="social-btn-custom" aria-label="GitHub">
+                            <i class="iconoir-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/elsaeed/" target="_blank" class="social-btn-custom" aria-label="LinkedIn">
+                            <i class="iconoir-linkedin"></i>
+                        </a>
+                        <a href="mailto:abdelrhman.ahmed.elsaeed@gmail.com" class="social-btn-custom" aria-label="Email">
+                            <i class="iconoir-mail"></i>
+                        </a>
                     </div>
-                    <div class="carousel-live sr-only" aria-live="polite"></div>
-                </div>
 
-                <div class="carousel-section-foot">
-                    <a href="blog.html" class="btn-outline-custom" data-i18n="blog_view_all">View All Posts</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tools Carousel Section -->
-        <section id="tools-preview" data-aos="fade-up">
-            <div class="container">
-                <div class="carousel-section-head">
-                    <div class="head-titles">
-                        <span class="section-label" data-i18n="tools_section_label">Built by me, for developers</span>
-                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="tools_section_title">My Tools</h2>
-                    </div>
-                    <div class="carousel-controls">
-                        <div class="carousel-dots" role="tablist"></div>
-                        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
-                            <i class="iconoir-nav-arrow-left"></i>
-                        </button>
-                        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
-                            <i class="iconoir-nav-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="carousel"
-                     data-carousel
-                     data-autoplay="5500"
-                     aria-roledescription="carousel"
-                     aria-label="My developer tools">
-                    <div class="carousel-viewport">
-                        <ul class="carousel-track" role="list">
-                            <li class="carousel-slide">
-                                <div class="carousel-card">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="card-icon" aria-hidden="true">⚡</div>
-                                        <a href="tools.html" class="card-cta" aria-label="View REST API Endpoint Tester" data-i18n="tools_view_tool">View Tool</a>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="tool1_name">REST API Endpoint Tester</h3>
-                                    <p class="card-desc" data-i18n="tool1_desc">A lightweight desktop tool to simulate and perform rapid testing of REST APIs. Built with C# and WPF to provide a zero-config GUI for testing endpoints.</p>
-                                    <div class="card-tags">
-                                        <span class="skill-tag">C#</span>
-                                        <span class="skill-tag">WPF</span>
-                                        <span class="skill-tag">REST</span>
-                                        <span class="skill-tag">JSON</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="carousel-slide">
-                                <div class="carousel-card">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="card-icon" aria-hidden="true">⚙️</div>
-                                        <a href="tools.html" class="card-cta" aria-label="View .NET Code Generator CLI" data-i18n="tools_view_tool">View Tool</a>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="tool2_name">.NET Code Generator CLI</h3>
-                                    <p class="card-desc" data-i18n="tool2_desc">A command-line tool that auto-generates Onion Architecture scaffolding including CQRS handlers, MediatR requests, and DTO mappings directly from SQL schemas.</p>
-                                    <div class="card-tags">
-                                        <span class="skill-tag">.NET CLI</span>
-                                        <span class="skill-tag">CQRS</span>
-                                        <span class="skill-tag">MediatR</span>
-                                        <span class="skill-tag">SQL</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="carousel-slide">
-                                <div class="carousel-card">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="card-icon" aria-hidden="true">📊</div>
-                                        <a href="tools.html" class="card-cta" aria-label="View SQL Schema Query Builder" data-i18n="tools_view_tool">View Tool</a>
-                                    </div>
-                                    <h3 class="card-title" data-i18n="tool3_name">SQL Schema Query Builder</h3>
-                                    <p class="card-desc" data-i18n="tool3_desc">A desktop application that helps engineers visually draft complex SQL Server queries, check schemas, and benchmark performance with visual execution plans.</p>
-                                    <div class="card-tags">
-                                        <span class="skill-tag">SQL Server</span>
-                                        <span class="skill-tag">EF Core</span>
-                                        <span class="skill-tag">LINQ</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="carousel-live sr-only" aria-live="polite"></div>
-                </div>
-
-                <div class="carousel-section-foot">
-                    <a href="tools.html" class="btn-outline-custom" data-i18n="tools_section_title">My Tools</a>
                 </div>
             </div>
         </section>
@@ -1093,6 +1504,210 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Carousel Section -->
+        <section id="blog-preview" data-aos="fade-up">
+            <div class="container">
+                <div class="carousel-section-head">
+                    <div class="head-titles">
+                        <span class="section-label" data-i18n="blog_section_label">Fresh from the keyboard</span>
+                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="blog_section_title">Latest From My Blog</h2>
+                    </div>
+                </div>
+
+                <div class="carousel"
+                     data-carousel
+                     data-autoplay="5000"
+                     aria-roledescription="carousel"
+                     aria-label="Latest blog posts">
+                    <div class="carousel-viewport">
+                        <ul class="carousel-track" role="list">
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="blog.html#blog-post-1" aria-label="Read: Why Onion Architecture is Vital for Scaling .NET APIs"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="blog.html#blog-post-1" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="blog1_cat">ARCHITECTURE</span> · <span data-i18n="blog1_date">June 2026</span>
+                                        </p>
+                                        <h1 data-i18n="blog1_title">Why Onion Architecture is Vital for Scaling .NET APIs</h1>
+                                        <p class="text-muted" data-i18n="blog1_desc">An in-depth look at Onion Architecture, how it decouples core business logic from outer layers, and why it is a lifesaver for long-term project maintenance.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag" data-i18n="blog_btn_read">Read Article ➔</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="blog.html#blog-post-2" aria-label="Read: Replacing Fat Services with MediatR & CQRS in ASP.NET Core"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="blog.html#blog-post-2" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="blog2_cat">PERFORMANCE</span> · <span data-i18n="blog2_date">May 2026</span>
+                                        </p>
+                                        <h1 data-i18n="blog2_title">Replacing Fat Services with MediatR & CQRS in ASP.NET Core</h1>
+                                        <p class="text-muted" data-i18n="blog2_desc">Learn how to clean up controllers and split your business operations into isolated Queries and Commands for simpler testing and separation of concerns.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag" data-i18n="blog_btn_read">Read Article ➔</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="blog.html#blog-post-3" aria-label="Read: Implementing Robust JWT & Refresh Token Authentication"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="blog.html#blog-post-3" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="blog3_cat">SECURITY</span> · <span data-i18n="blog3_date">April 2026</span>
+                                        </p>
+                                        <h1 data-i18n="blog3_title">Implementing Robust JWT & Refresh Token Authentication</h1>
+                                        <p class="text-muted" data-i18n="blog3_desc">A step-by-step tutorial on securing Web APIs using JSON Web Tokens, managing refresh tokens safely, and writing custom role-based filters.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag" data-i18n="blog_btn_read">Read Article ➔</span>
+                                        </div>
+                                    </div>
+</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="carousel-live sr-only" aria-live="polite"></div>
+                </div>
+
+                <div class="carousel-controls">
+                    <div class="carousel-dots" role="tablist"></div>
+                    <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
+                        <i class="iconoir-nav-arrow-left"></i>
+                    </button>
+                    <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
+                        <i class="iconoir-nav-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="carousel-section-foot">
+                    <a href="blog.html" class="btn-outline-custom" data-i18n="blog_view_all">View All Posts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Carousel Section -->
+        <section id="tools-preview" data-aos="fade-up">
+            <div class="container">
+                <div class="carousel-section-head">
+                    <div class="head-titles">
+                        <span class="section-label" data-i18n="tools_section_label">Built by me, for developers</span>
+                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="tools_section_title">My Tools</h2>
+                    </div>
+                </div>
+
+                <div class="carousel"
+                     data-carousel
+                     data-autoplay="5500"
+                     aria-roledescription="carousel"
+                     aria-label="My developer tools">
+                    <div class="carousel-viewport">
+                        <ul class="carousel-track" role="list">
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="tools.html#tool-1" aria-label="View REST API Endpoint Tester"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="tools.html#tool-1" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="tools_section_label">Built by me, for developers</span>
+                                        </p>
+                                        <h1 data-i18n="tool1_name">REST API Endpoint Tester</h1>
+                                        <p class="text-muted" data-i18n="tool1_desc">A lightweight desktop tool to simulate and perform rapid testing of REST APIs. Built with C# and WPF to provide a zero-config GUI for testing endpoints.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag">C#</span>
+                                            <span class="skill-tag">WPF</span>
+                                            <span class="skill-tag">REST</span>
+                                            <span class="skill-tag">JSON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="tools.html#tool-2" aria-label="View .NET Code Generator CLI"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="tools.html#tool-2" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="tools_section_label">Built by me, for developers</span>
+                                        </p>
+                                        <h1 data-i18n="tool2_name">.NET Code Generator CLI</h1>
+                                        <p class="text-muted" data-i18n="tool2_desc">A command-line tool that auto-generates Onion Architecture scaffolding including CQRS handlers, MediatR requests, and DTO mappings directly from SQL schemas.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag">.NET CLI</span>
+                                            <span class="skill-tag">CQRS</span>
+                                            <span class="skill-tag">MediatR</span>
+                                            <span class="skill-tag">SQL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card shadow-box h-full" style="padding: 0; position: relative;">
+                                    <a class="overlay-link" href="tools.html#tool-3" aria-label="View SQL Schema Query Builder"></a>
+                                    <img src="./assets/images/bg1.png" alt="BG" class="bg-img blog-tool-img">
+                                    <a href="tools.html#tool-3" class="project-btn card-arrow-btn blog-tool-arrow" style="position: absolute; top: 12px; right: 12px; z-index: 10;">
+                                        <img src="./assets/images/icon.svg" alt="Arrow">
+                                    </a>
+
+                                    <div class="project-info blog-tool-info">
+                                        <p class="card-category-pill">
+                                            <span data-i18n="tools_section_label">Built by me, for developers</span>
+                                        </p>
+                                        <h1 data-i18n="tool3_name">SQL Schema Query Builder</h1>
+                                        <p class="text-muted" data-i18n="tool3_desc">A desktop application that helps engineers visually draft complex SQL Server queries, check schemas, and benchmark performance with visual execution plans.</p>
+                                        <div class="tags-wrap mt-auto">
+                                            <span class="skill-tag">SQL Server</span>
+                                            <span class="skill-tag">EF Core</span>
+                                            <span class="skill-tag">LINQ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="carousel-live sr-only" aria-live="polite"></div>
+                </div>
+
+                <div class="carousel-controls">
+                    <div class="carousel-dots" role="tablist"></div>
+                    <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
+                        <i class="iconoir-nav-arrow-left"></i>
+                    </button>
+                    <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
+                        <i class="iconoir-nav-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="carousel-section-foot">
+                    <a href="tools.html" class="btn-outline-custom" data-i18n="tools_section_title">My Tools</a>
                 </div>
             </div>
         </section>
@@ -1187,7 +1802,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
+        <section id="projects" class="projects-area">
             <div class="container">
                 <span class="section-label" data-i18n="projects_label">Things I've built</span>
                 <h2 class="section-title" data-i18n="projects_title">Projects</h2>
@@ -1355,8 +1970,11 @@
                     <div class="col-md-4" data-aos="zoom-in">
                         <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
                             <div>
+                                <div class="cert-thumbnail-placeholder">
+                                    <div class="cert-glow"></div>
+                                    <div class="cert-badge-icon">💡</div>
+                                </div>
                                 <div class="header">
-                                    <span class="icon">📜</span>
                                     <h3 class="title" data-i18n="cert1_title">Practical Prompt Engineering</h3>
                                 </div>
                                 <p class="text-muted" style="font-size: 13px;" data-i18n="cert1_org">Frontend Masters</p>
@@ -1372,8 +1990,11 @@
                     <div class="col-md-4" data-aos="zoom-in">
                         <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
                             <div>
+                                <div class="cert-thumbnail-placeholder">
+                                    <div class="cert-glow"></div>
+                                    <div class="cert-badge-icon">📐</div>
+                                </div>
                                 <div class="header">
-                                    <span class="icon">📜</span>
                                     <h3 class="title" data-i18n="cert2_title">Solid Principles</h3>
                                 </div>
                                 <p class="text-muted" style="font-size: 13px;" data-i18n="cert2_org">Programming Advice</p>
@@ -1389,8 +2010,11 @@
                     <div class="col-md-4" data-aos="zoom-in">
                         <div class="skill-card-custom h-full d-flex flex-column justify-content-between" style="padding: 24px;">
                             <div>
+                                <div class="cert-thumbnail-placeholder">
+                                    <div class="cert-glow"></div>
+                                    <div class="cert-badge-icon">⚙️</div>
+                                </div>
                                 <div class="header">
-                                    <span class="icon">📜</span>
                                     <h3 class="title" data-i18n="cert3_title">Backend Development, Foundations, Problem Solving</h3>
                                 </div>
                                 <p class="text-muted" style="font-size: 13px;" data-i18n="cert3_org">Programming Advice (C++&C# & SQL)</p>
@@ -1402,10 +2026,6 @@
                         </div>
                     </div>
  
-                </div>
-            </div>
-        </section>
-
                 </div>
             </div>
         </section>
@@ -1459,12 +2079,18 @@
                     <div class="col-lg-6" data-aos="fade-left">
                         <div class="socials-grid-custom">
                             <a href="https://github.com/Abdelrhman-elsaeed" target="_blank" class="social-card-custom">
-                                <i class="iconoir-github"></i>
-                                <span data-i18n="contact_github_lbl">GitHub</span>
+                                <div class="social-card-icon-wrap">
+                                    <i class="iconoir-github"></i>
+                                </div>
+                                <h3 class="social-card-title" data-i18n="contact_github_lbl">GitHub</h3>
+                                <p class="social-card-desc" data-i18n="contact_github_desc">Check out my repositories & projects</p>
                             </a>
                             <a href="https://www.linkedin.com/in/elsaeed/" target="_blank" class="social-card-custom">
-                                <i class="iconoir-linkedin"></i>
-                                <span data-i18n="contact_linkedin_lbl">LinkedIn</span>
+                                <div class="social-card-icon-wrap">
+                                    <i class="iconoir-linkedin"></i>
+                                </div>
+                                <h3 class="social-card-title" data-i18n="contact_linkedin_lbl">LinkedIn</h3>
+                                <p class="social-card-desc" data-i18n="contact_linkedin_desc">Let's connect professionally</p>
                             </a>
                         </div>
                     </div>
@@ -1530,18 +2156,23 @@
     <script src="./assets/js/aos.js"></script>
     <script src="./assets/js/translations.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/carousel.js"></script>
+    <script src="./assets/js/carousel.js?v=1.0.1"></script>
 
     <script>
-        // Update active menu link on scroll
+        // Update active menu link on scroll (match by section ID -> nav href, not DOM index)
         $(window).scroll(function() {
             var scrollDistance = $(window).scrollTop();
-            $('section').each(function(i) {
-                if ($(this).position().top <= scrollDistance + 100) {
-                    $('.navbar ul li.active').removeClass('active');
-                    $('.navbar ul li').eq(i).addClass('active');
+            var currentId = '';
+            $('section').each(function() {
+                var top = $(this).position().top;
+                if (top <= scrollDistance + 100) {
+                    currentId = $(this).attr('id');
                 }
             });
+            $('.navbar ul li').removeClass('active');
+            if (currentId) {
+                $('.navbar ul li a[href="#' + currentId + '"]').parent('li').addClass('active');
+            }
         }).scroll();
     </script>
 </body>

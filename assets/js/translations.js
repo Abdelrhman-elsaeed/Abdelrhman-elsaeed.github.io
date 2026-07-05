@@ -101,7 +101,9 @@ const translations = {
     contact_loc_lbl: "Location",
     contact_loc_val: "Cairo, Egypt",
     contact_github_lbl: "GitHub",
+    contact_github_desc: "Check out my repositories & projects",
     contact_linkedin_lbl: "LinkedIn",
+    contact_linkedin_desc: "Let's connect professionally",
     
     // Footer Section
     footer_rights: "All rights reserved. Made with ❤️ by Abdelrhman Elsaid",
@@ -150,11 +152,13 @@ const translations = {
     blog_view_all: "View All Posts",
     tools_section_label: "Built by me, for developers",
     tools_section_title: "My Tools",
-    tools_view_tool: "View Tool",
+    tools_view_tool: "View Tool ➔",
     carousel_prev: "Previous slide",
     carousel_next: "Next slide",
     carousel_blog_aria: "Latest blog posts",
-    carousel_tools_aria: "My developer tools"
+    carousel_tools_aria: "My developer tools",
+    carousel_dot: "Go to slide {num}",
+    carousel_of: "of"
   },
   ar: {
     // Nav & General
@@ -258,7 +262,9 @@ const translations = {
     contact_loc_lbl: "الموقع",
     contact_loc_val: "القاهرة، مصر",
     contact_github_lbl: "جيت هاب",
+    contact_github_desc: "تصفح مشاريعي ومستودعاتي البرمجية",
     contact_linkedin_lbl: "لينكد إن",
+    contact_linkedin_desc: "دعنا نتواصل مهنياً",
     
     // Footer Section
     footer_rights: "جميع الحقوق محفوظة. تم الصنع بـ ❤️ بواسطة عبد الرحمن السعيد",
@@ -287,7 +293,7 @@ const translations = {
     // Blogs Page
     blog_page_title: "مدونة المطور",
     blog_page_subtitle: "مقالات ودروس تعليمية حول بناء تطبيقات دوت نت (.NET) احترافية",
-    blog_btn_read: "اقرأ المقال ➔",
+    blog_btn_read: "اقرأ المقال ⬅",
     blog1_cat: "العمارة البرمجية",
     blog1_date: "يونيو 2026",
     blog1_title: "لماذا تعد Onion Architecture حيوية للمشاريع الكبيرة في دوت نت؟",
@@ -307,11 +313,13 @@ const translations = {
     blog_view_all: "عرض جميع المقالات",
     tools_section_label: "بنيتها بنفسي للمطورين",
     tools_section_title: "أدواتي",
-    tools_view_tool: "عرض الأداة",
+    tools_view_tool: "عرض الأداة ⬅",
     carousel_prev: "الشريحة السابقة",
     carousel_next: "الشريحة التالية",
     carousel_blog_aria: "أحدث مقالات المدونة",
-    carousel_tools_aria: "أدواتي البرمجية للمطورين"
+    carousel_tools_aria: "أدواتي البرمجية للمطورين",
+    carousel_dot: "الذهاب إلى الشريحة {num}",
+    carousel_of: "من"
   }
 };
 window.translations = translations;
