@@ -1,0 +1,296 @@
+/* ============================================================
+   Reusable Carousel Component
+   Theme-aware (dark + light) via CSS variables from style.css
+   RTL-aware: arrows flip and slide direction inverts automatically
+   ============================================================ */
+
+/* ---------- Section header row (label + dots + arrows) ---------- */
+.carousel-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.carousel-section-head .head-titles {
+    min-width: 0;
+}
+
+/* The controls cluster (dots + arrows) lives in the same row on desktop,
+   wraps under the title on mobile */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---------- Carousel frame ---------- */
+.carousel {
+    position: relative;
+    --carousel-card-gap: 20px;
+    --carousel-card-width: 100%; /* desktop default = ~1 card visible (with peek) */
+    --carousel-peek: 28%;        /* how much of the next card shows on desktop */
+}
+
+/* The viewport clips the track so off-screen slides never show */
+.carousel-viewport {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    /* Lifts the track above the side padding so peeked slides are visible */
+    padding: 0 calc(var(--carousel-peek) + 4px);
+}
+
+/* The track is the element we translate. Layout uses flex so slides
+   stay in a single row, no JS-driven widths needed. */
+.carousel-track {
+    display: flex;
+    gap: var(--carousel-card-gap);
+    transition: transform 480ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    /* Hint the browser we'll snap */
+}
+.carousel-viewport {
+    touch-action: pan-y;
+}
+
+/* When dragging we want no transition lag */
+.carousel-track.is-dragging {
+    transition: none;
+    cursor: grabbing;
+}
+
+/* Each slide is a flex item. On desktop it's narrower than 100% so the
+   next card peeks in. On mobile we force 100% so one slide fills the frame. */
+.carousel-slide {
+    flex: 0 0 calc(100% - var(--carousel-peek));
+    min-width: 0;
+    opacity: 0.35;
+    transform: scale(0.96);
+    transition: opacity 480ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 480ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+@media (max-width: 767px) {
+    .carousel-slide {
+        flex: 0 0 100%;
+    }
+    .carousel-viewport {
+        padding: 0; /* no peek on mobile -> single full-width card */
+    }
+}
+
+/* ---------- Generic slide card ---------- */
+.carousel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 24px;
+    padding: 28px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.carousel-slide.is-active .carousel-card:hover {
+    border-color: #DE7356;
+    transform: translateY(-3px);
+}
+
+.carousel-card .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(222, 115, 86, 0.1);
+    border: 1px solid rgba(222, 115, 86, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+}
+
+.carousel-card .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #858585;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.carousel-card .card-meta .meta-cat {
+    color: #DE7356;
+    font-weight: 600;
+}
+.carousel-card .card-meta .meta-sep {
+    opacity: 0.5;
+}
+
+.carousel-card .card-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-title);
+    line-height: 1.35;
+    margin: 0;
+}
+
+.carousel-card .card-desc {
+    font-size: 13px;
+    color: var(--text-desc);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.carousel-card .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.carousel-card .card-cta {
+    margin-top: auto;
+    align-self: flex-start;
+    color: #DE7356;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+.carousel-card .card-cta:hover {
+    gap: 10px;
+    color: #C86246;
+}
+
+/* ---------- Arrow buttons ---------- */
+.carousel-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    color: var(--text-title);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease,
+                border-color 0.3s ease, transform 0.2s ease;
+    font-size: 18px;
+    padding: 0;
+}
+.carousel-arrow:hover:not(:disabled) {
+    background: #DE7356;
+    color: #fff;
+    border-color: #DE7356;
+}
+.carousel-arrow:active:not(:disabled) {
+    transform: scale(0.94);
+}
+.carousel-arrow:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.carousel-arrow i {
+    pointer-events: none;
+}
+
+/* ---------- Dots ---------- */
+.carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-card);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+}
+.carousel-dot:hover {
+    background: var(--text-desc);
+}
+.carousel-dot.is-active {
+    background: #DE7356;
+    width: 22px;
+    border-radius: 4px;
+}
+
+/* ---------- "View all" CTA below the carousel ---------- */
+.carousel-section-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+/* ---------- Single-slide variant (no arrows / no dots / no autoplay) ---------- */
+.carousel.is-single .carousel-arrow,
+.carousel.is-single .carousel-dots {
+    display: none;
+}
+.carousel.is-single .carousel-track {
+    transform: none !important;
+}
+.carousel.is-single .carousel-slide {
+    opacity: 1;
+    transform: none;
+}
+.carousel.is-single .carousel-viewport {
+    padding: 0;
+}
+.carousel.is-single .carousel-slide {
+    flex: 0 0 100%;
+}
+
+/* ---------- RTL: arrows swap + track direction handled by JS sign ---------- */
+[dir="rtl"] .carousel-arrow-prev i::before {
+    /* nav-arrow-left glyph becomes nav-arrow-right visually in RTL */
+    transform: scaleX(-1);
+}
+[dir="rtl"] .carousel-arrow-next i::before {
+    transform: scaleX(-1);
+}
+
+/* Focus ring */
+.carousel-arrow:focus-visible,
+.carousel-dot:focus-visible,
+.carousel-card .card-cta:focus-visible {
+    outline: 2px solid #DE7356;
+    outline-offset: 3px;
+}
+
+/* Screen-reader-only utility (not provided by this Bootstrap version) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track,
+    .carousel-slide,
+    .carousel-dot,
+    .carousel-arrow {
+        transition: none !important;
+    }
+}

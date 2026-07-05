@@ -18,6 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/aos.css">
+    <link rel="stylesheet" href="./assets/css/carousel.css">
     <link id="theme-link" rel="stylesheet" href="./assets/css/style.css">
     <script>
         // Apply theme and language immediately before rendering to avoid FOUC
@@ -863,6 +864,166 @@
             </div>
         </section>
 
+        <!-- Blog Carousel Section -->
+        <section id="blog-preview" data-aos="fade-up">
+            <div class="container">
+                <div class="carousel-section-head">
+                    <div class="head-titles">
+                        <span class="section-label" data-i18n="blog_section_label">Fresh from the keyboard</span>
+                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="blog_section_title">Latest From My Blog</h2>
+                    </div>
+                    <div class="carousel-controls">
+                        <div class="carousel-dots" role="tablist"></div>
+                        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
+                            <i class="iconoir-nav-arrow-left"></i>
+                        </button>
+                        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
+                            <i class="iconoir-nav-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="carousel"
+                     data-carousel
+                     data-autoplay="5000"
+                     aria-roledescription="carousel"
+                     aria-label="Latest blog posts">
+                    <div class="carousel-viewport">
+                        <ul class="carousel-track" role="list">
+                            <li class="carousel-slide">
+                                <a href="blog.html" class="carousel-card" aria-label="Read: Why Onion Architecture is Vital for Scaling .NET APIs" style="text-decoration: none; color: inherit;">
+                                    <div class="card-icon" aria-hidden="true">🏛️</div>
+                                    <div class="card-meta">
+                                        <span class="meta-cat" data-i18n="blog1_cat">ARCHITECTURE</span>
+                                        <span class="meta-sep">·</span>
+                                        <span data-i18n="blog1_date">June 2026</span>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="blog1_title">Why Onion Architecture is Vital for Scaling .NET APIs</h3>
+                                    <p class="card-desc" data-i18n="blog1_desc">An in-depth look at Onion Architecture, how it decouples core business logic from outer layers, and why it is a lifesaver for long-term project maintenance.</p>
+                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
+                                </a>
+                            </li>
+                            <li class="carousel-slide">
+                                <a href="blog.html" class="carousel-card" aria-label="Read: Replacing Fat Services with MediatR & CQRS in ASP.NET Core" style="text-decoration: none; color: inherit;">
+                                    <div class="card-icon" aria-hidden="true">⚡</div>
+                                    <div class="card-meta">
+                                        <span class="meta-cat" data-i18n="blog2_cat">PERFORMANCE</span>
+                                        <span class="meta-sep">·</span>
+                                        <span data-i18n="blog2_date">May 2026</span>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="blog2_title">Replacing Fat Services with MediatR & CQRS in ASP.NET Core</h3>
+                                    <p class="card-desc" data-i18n="blog2_desc">Learn how to clean up controllers and split your business operations into isolated Queries and Commands for simpler testing and separation of concerns.</p>
+                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
+                                </a>
+                            </li>
+                            <li class="carousel-slide">
+                                <a href="blog.html" class="carousel-card" aria-label="Read: Implementing Robust JWT & Refresh Token Authentication" style="text-decoration: none; color: inherit;">
+                                    <div class="card-icon" aria-hidden="true">🔐</div>
+                                    <div class="card-meta">
+                                        <span class="meta-cat" data-i18n="blog3_cat">SECURITY</span>
+                                        <span class="meta-sep">·</span>
+                                        <span data-i18n="blog3_date">April 2026</span>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="blog3_title">Implementing Robust JWT & Refresh Token Authentication</h3>
+                                    <p class="card-desc" data-i18n="blog3_desc">A step-by-step tutorial on securing Web APIs using JSON Web Tokens, managing refresh tokens safely, and writing custom role-based filters.</p>
+                                    <span class="card-cta" data-i18n="blog_btn_read">Read Article ➔</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="carousel-live sr-only" aria-live="polite"></div>
+                </div>
+
+                <div class="carousel-section-foot">
+                    <a href="blog.html" class="btn-outline-custom" data-i18n="blog_view_all">View All Posts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Carousel Section -->
+        <section id="tools-preview" data-aos="fade-up">
+            <div class="container">
+                <div class="carousel-section-head">
+                    <div class="head-titles">
+                        <span class="section-label" data-i18n="tools_section_label">Built by me, for developers</span>
+                        <h2 class="section-title" style="margin-bottom: 0;" data-i18n="tools_section_title">My Tools</h2>
+                    </div>
+                    <div class="carousel-controls">
+                        <div class="carousel-dots" role="tablist"></div>
+                        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous slide">
+                            <i class="iconoir-nav-arrow-left"></i>
+                        </button>
+                        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next slide">
+                            <i class="iconoir-nav-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="carousel"
+                     data-carousel
+                     data-autoplay="5500"
+                     aria-roledescription="carousel"
+                     aria-label="My developer tools">
+                    <div class="carousel-viewport">
+                        <ul class="carousel-track" role="list">
+                            <li class="carousel-slide">
+                                <div class="carousel-card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="card-icon" aria-hidden="true">⚡</div>
+                                        <a href="tools.html" class="card-cta" aria-label="View REST API Endpoint Tester" data-i18n="tools_view_tool">View Tool</a>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="tool1_name">REST API Endpoint Tester</h3>
+                                    <p class="card-desc" data-i18n="tool1_desc">A lightweight desktop tool to simulate and perform rapid testing of REST APIs. Built with C# and WPF to provide a zero-config GUI for testing endpoints.</p>
+                                    <div class="card-tags">
+                                        <span class="skill-tag">C#</span>
+                                        <span class="skill-tag">WPF</span>
+                                        <span class="skill-tag">REST</span>
+                                        <span class="skill-tag">JSON</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="card-icon" aria-hidden="true">⚙️</div>
+                                        <a href="tools.html" class="card-cta" aria-label="View .NET Code Generator CLI" data-i18n="tools_view_tool">View Tool</a>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="tool2_name">.NET Code Generator CLI</h3>
+                                    <p class="card-desc" data-i18n="tool2_desc">A command-line tool that auto-generates Onion Architecture scaffolding including CQRS handlers, MediatR requests, and DTO mappings directly from SQL schemas.</p>
+                                    <div class="card-tags">
+                                        <span class="skill-tag">.NET CLI</span>
+                                        <span class="skill-tag">CQRS</span>
+                                        <span class="skill-tag">MediatR</span>
+                                        <span class="skill-tag">SQL</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="carousel-slide">
+                                <div class="carousel-card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="card-icon" aria-hidden="true">📊</div>
+                                        <a href="tools.html" class="card-cta" aria-label="View SQL Schema Query Builder" data-i18n="tools_view_tool">View Tool</a>
+                                    </div>
+                                    <h3 class="card-title" data-i18n="tool3_name">SQL Schema Query Builder</h3>
+                                    <p class="card-desc" data-i18n="tool3_desc">A desktop application that helps engineers visually draft complex SQL Server queries, check schemas, and benchmark performance with visual execution plans.</p>
+                                    <div class="card-tags">
+                                        <span class="skill-tag">SQL Server</span>
+                                        <span class="skill-tag">EF Core</span>
+                                        <span class="skill-tag">LINQ</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="carousel-live sr-only" aria-live="polite"></div>
+                </div>
+
+                <div class="carousel-section-foot">
+                    <a href="tools.html" class="btn-outline-custom" data-i18n="tools_section_title">My Tools</a>
+                </div>
+            </div>
+        </section>
+
         <!-- About Section -->
         <section id="about">
             <div class="container">
@@ -1369,6 +1530,7 @@
     <script src="./assets/js/aos.js"></script>
     <script src="./assets/js/translations.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/carousel.js"></script>
 
     <script>
         // Update active menu link on scroll

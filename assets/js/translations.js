@@ -142,7 +142,19 @@ const translations = {
     blog3_cat: "SECURITY",
     blog3_date: "April 2026",
     blog3_title: "Implementing Robust JWT & Refresh Token Authentication",
-    blog3_desc: "A step-by-step tutorial on securing Web APIs using JSON Web Tokens, managing refresh tokens safely, and writing custom role-based filters."
+    blog3_desc: "A step-by-step tutorial on securing Web APIs using JSON Web Tokens, managing refresh tokens safely, and writing custom role-based filters.",
+
+    // Homepage carousels
+    blog_section_label: "Fresh from the keyboard",
+    blog_section_title: "Latest From My Blog",
+    blog_view_all: "View All Posts",
+    tools_section_label: "Built by me, for developers",
+    tools_section_title: "My Tools",
+    tools_view_tool: "View Tool",
+    carousel_prev: "Previous slide",
+    carousel_next: "Next slide",
+    carousel_blog_aria: "Latest blog posts",
+    carousel_tools_aria: "My developer tools"
   },
   ar: {
     // Nav & General
@@ -287,7 +299,19 @@ const translations = {
     blog3_cat: "الحماية والتأمين",
     blog3_date: "أبريل 2026",
     blog3_title: "تطبيق حماية متطورة بـ JWT ورموز التحديث (Refresh Tokens)",
-    blog3_desc: "دليل عملي لتأمين واجهات تطبيقات الويب، وإدارة رموز التحديث بشكل آمن، مع كتابة فلاتر تحقق مخصصة قائمة على الأدوار."
+    blog3_desc: "دليل عملي لتأمين واجهات تطبيقات الويب، وإدارة رموز التحديث بشكل آمن، مع كتابة فلاتر تحقق مخصصة قائمة على الأدوار.",
+
+    // Homepage carousels
+    blog_section_label: "جديد من لوحة المفاتيح",
+    blog_section_title: "أحدث مقالات المدونة",
+    blog_view_all: "عرض جميع المقالات",
+    tools_section_label: "بنيتها بنفسي للمطورين",
+    tools_section_title: "أدواتي",
+    tools_view_tool: "عرض الأداة",
+    carousel_prev: "الشريحة السابقة",
+    carousel_next: "الشريحة التالية",
+    carousel_blog_aria: "أحدث مقالات المدونة",
+    carousel_tools_aria: "أدواتي البرمجية للمطورين"
   }
 };
 window.translations = translations;
